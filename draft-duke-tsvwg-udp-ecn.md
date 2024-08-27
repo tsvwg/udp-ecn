@@ -7,18 +7,18 @@ ipr: trust200902
 docname: draft-duke-tsvwg-udp-ecn-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
 date: {DATE}
-area: WIT
-workgroup: tsvwg
+area: "Web and Internet Transport"
+workgroup: "Transport and Services Working Group"
 keyword:
  - udp
  - ecn
 venue:
-  group: TSVWG
-  type: Working Group
-  mail: tsvwg@ietf.org
-  arch: https://mailarchive.ietf.org/arch/browse/tsvwg/
-  github: martinduke/draft-tsvwg-udp-ecn
-  latest: https://example.com/LATEST
+  group: "Transport and Services Working Group"
+  type: "Working Group"
+  mail: "tsvwg@ietf.org"
+  arch: "https://mailarchive.ietf.org/arch/browse/tsvwg/"
+  github: "martinduke/udp-ecn"
+  latest: "https://martinduke.github.io/udp-ecn/draft-duke-tsvwg-udp-ecn.html"
 
 author:
  -
