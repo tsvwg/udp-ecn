@@ -9,14 +9,6 @@ This is the working area for individual Internet-Drafts.
 * [Individual Draft](https://datatracker.ietf.org/doc/html/draft-duke-tsvwg-udp-ecn)
 * [Compare Editor's Copy to Individual Draft](https://martinduke.github.io/udp-ecn/#go.draft-duke-tsvwg-udp-ecn.diff)
 
-## TODO - Your title
-
-* [Editor's Copy](https://martinduke.github.io/udp-ecn/#go.draft-todo-yourname-protocol.html)
-* [Datatracker Page](https://datatracker.ietf.org/doc/draft-todo-yourname-protocol)
-* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-todo-yourname-protocol)
-* [Compare Editor's Copy to Individual Draft](https://martinduke.github.io/udp-ecn/#go.draft-todo-yourname-protocol.diff)
-
-
 ## Contributing
 
 See the
