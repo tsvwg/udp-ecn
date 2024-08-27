@@ -106,10 +106,10 @@ marks, and retrieving the value for each incoming packet.
 To report ECN, applications set a socket option to true using a setsockopt()
 call.
 
-IPv6 sockets require a socket option of level IPPROTO_IPV6 and name
+IPv6 sockets require a socket option of level IPPROTO_IPV6 and type
 IPV6_RECVTCLASS.
 
-IPv4 sockets require a socket option of level IPPROTO_IP and name
+IPv4 sockets require a socket option of level IPPROTO_IP and type
 IP_RECVTOS.
 
 For dual-stack sockets, on Linux hosts the application sets both the
@@ -126,7 +126,7 @@ Windows documentation recommends using the function WSASetRecvIPEcn() to
 enable ECN reporting regardless of the IP version.
 
 However, this can also be accomplished by calling setsockopt() and using
-options of level IPPROTO_IP and name IP_RECVECN for IPv4, and IPPROTO_IPV6
+options of level IPPROTO_IP and type IP_RECVECN for IPv4, and IPPROTO_IPV6
 and IPV6_RECVECN for IPv6. The author was unable to identify any online
 documentation of these options at the time of writing.
 
@@ -204,9 +204,9 @@ support for ECN, it is suitable to configure outgoing ECN on a per-packet basis.
 ### Linux and Apple
 
 Both Linux and Apple platforms set the outgoing ECN for IPv4 packets with a
-socket option of level IPPROTO_IP and name IP_TOS.
+socket option of level IPPROTO_IP and type IP_TOS.
 
-For IPv6 packets, they use level IPPROTO_IPV6 and name IPV6_TCLASS.
+For IPv6 packets, they use level IPPROTO_IPV6 and type IPV6_TCLASS.
 
 This setsockopt() call also sets the Differentiated Services Code Point (DSCP)
 bits that make up the rest of the TOS byte. Applications making this call will
