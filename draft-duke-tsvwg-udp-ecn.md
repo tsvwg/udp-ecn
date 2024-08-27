@@ -230,19 +230,12 @@ mark.
 Packets can be individually marked with ECN codepoints using the control
 information that accompanies a sendmsg() call.
 
-### Linux
+### Linux and Apple
 
-Linux uses a cmsg with level IPPROTO_IP and type IP_TOS for IPv4 packets.
+These platforms expect a cmsg with level IPPROTO_IP and type IP_TOS if the
+destination is an IPv4 address, or a IPv4-mapped IPv6 address.
 
-Linux uses a cmsg with level IPPROTO_IPV6 and type IPV6_TCLASS for IPv6 packets.
-
-In either case, note that the six most significant bits of the data are the
-DSCP code point, and in general should be preserved while changing the ECN bits.
-
-### Apple
-
-The author has not conducted experiments with setting ECN marks on a per-packet
-basis on an Apple socket.
+Otherwise, they expect a cmsg with level IPPROTO_IPV6 and type IPV6_TCLASS.
 
 ### Microsoft
 
