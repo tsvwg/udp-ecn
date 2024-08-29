@@ -1,0 +1,172 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2024-08-29T00:43:56.729534+00:00",
+  "repo": "martinduke/udp-ecn",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [
+    {
+      "number": 1,
+      "id": "I_kwDOMpG-ts6Ua5aK",
+      "title": "Cross-check with quinn-udp implementation",
+      "url": "https://github.com/martinduke/udp-ecn/issues/1",
+      "state": "CLOSED",
+      "author": "mxinden",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Thank you @martinduke for the document.\r\n\r\nFor what it is worth, I cross-checked the information in this document with the implementation in [`quinn-udp`](https://github.com/quinn-rs/quinn/tree/main/quinn-udp). I didn't find any discrepancies.\r\n\r\nNote that `quinn-udp` does implement some APIs missing in the document, e.g. [Windows](https://github.com/quinn-rs/quinn/blob/bb02a12a8435a7732a1d762783eeacbb7e50418e/quinn-udp/src/windows.rs#L180-L189) and [Apple](https://github.com/quinn-rs/quinn/blob/bb02a12a8435a7732a1d762783eeacbb7e50418e/quinn-udp/src/unix.rs#L562-L571) per-packet ECN marks.\r\n\r\n#### Context\r\n\r\nI am working with Mozilla, replacing their current QUIC UDP IO path away from [NSPR](https://github.com/nss-dev/nspr), to a modern Rust implementation. See [project tracking issue](https://bugzilla.mozilla.org/show_bug.cgi?id=1901292).\r\n\r\nInternally we are using [`quinn-udp`](https://github.com/quinn-rs/quinn/tree/main/quinn-udp) from the [`quinn`](https://github.com/quinn-rs/quinn/) project.\r\n\r\n//CC `quinn` maintainers @djc and @Ralith",
+      "createdAt": "2024-08-25T07:56:31Z",
+      "updatedAt": "2024-08-28T17:26:15Z",
+      "closedAt": "2024-08-28T17:26:15Z",
+      "comments": []
+    },
+    {
+      "number": 4,
+      "id": "I_kwDOMpG-ts6Uk5NO",
+      "title": "Include `sendmmsg` and `recvmmsg` on Linux?",
+      "url": "https://github.com/martinduke/udp-ecn/issues/4",
+      "state": "OPEN",
+      "author": "mxinden",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "On Linux, one can send and receive ECN marked datagrams using `sendmmsg` and `recvmmsg` (note the two `m`s).\r\n\r\nSee for example:\r\n\r\nhttps://github.com/quinn-rs/quinn/blob/bb02a12a8435a7732a1d762783eeacbb7e50418e/quinn-udp/src/unix.rs#L469-L470\r\n\r\nShould this be included in the draft? If yes, I can prepare a PR.",
+      "createdAt": "2024-08-28T18:04:29Z",
+      "updatedAt": "2024-08-28T18:23:31Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "martinduke",
+          "authorAssociation": "OWNER",
+          "body": "I think that adds clarity, so sure.",
+          "createdAt": "2024-08-28T18:23:30Z",
+          "updatedAt": "2024-08-28T18:23:30Z"
+        }
+      ]
+    }
+  ],
+  "pulls": [
+    {
+      "number": 2,
+      "id": "PR_kwDOMpG-ts55neYx",
+      "title": "socket options use names, not types",
+      "url": "https://github.com/martinduke/udp-ecn/pull/2",
+      "state": "CLOSED",
+      "author": "tuexen",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "while there, fix also a typo.",
+      "createdAt": "2024-08-27T19:36:20Z",
+      "updatedAt": "2024-08-27T20:56:56Z",
+      "baseRepository": "martinduke/udp-ecn",
+      "baseRefName": "main",
+      "baseRefOid": "e918dbbc2cd7c6ea1f3613dbe3be15b97c7dda61",
+      "headRepository": "tuexen/udp-ecn",
+      "headRefName": "editorial-fixes",
+      "headRefOid": "6e6a8ad6ceb3a921cf66a78189e1e8aa34bea5a5",
+      "closedAt": "2024-08-27T19:42:04Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "martinduke",
+          "authorAssociation": "OWNER",
+          "body": "I'm a bit confused because your PR seems to be changing \"name\" to \"type\", which is not your title.\r\n\r\nIn any case, the relevant variable in the struct is cmsg_type, so that seems more transparent. I prefer \"type\", so I'll commit this.",
+          "createdAt": "2024-08-27T20:56:55Z",
+          "updatedAt": "2024-08-27T20:56:55Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 3,
+      "id": "PR_kwDOMpG-ts55oh5X",
+      "title": "mxinden results",
+      "url": "https://github.com/martinduke/udp-ecn/pull/3",
+      "state": "MERGED",
+      "author": "martinduke",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes #1",
+      "createdAt": "2024-08-27T23:12:13Z",
+      "updatedAt": "2024-08-28T17:26:14Z",
+      "baseRepository": "martinduke/udp-ecn",
+      "baseRefName": "main",
+      "baseRefOid": "e918dbbc2cd7c6ea1f3613dbe3be15b97c7dda61",
+      "headRepository": "martinduke/udp-ecn",
+      "headRefName": "mxinden",
+      "headRefOid": "8740935428c54aef7742abd86badf66e26b71820",
+      "closedAt": "2024-08-28T17:26:14Z",
+      "mergedAt": "2024-08-28T17:26:14Z",
+      "mergedBy": "martinduke",
+      "mergeCommit": {
+        "oid": "71bf2390bfac6986d4ccca4b3ac2df789816755d"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOMpG-ts6HHXkn",
+          "commit": {
+            "abbreviatedOid": "8740935"
+          },
+          "author": "mxinden",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Thank you Martin!",
+          "createdAt": "2024-08-28T17:16:36Z",
+          "updatedAt": "2024-08-28T17:16:36Z",
+          "comments": []
+        }
+      ]
+    }
+  ]
+}
