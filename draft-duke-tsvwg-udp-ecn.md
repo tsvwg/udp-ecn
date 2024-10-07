@@ -273,6 +273,7 @@ This document has no IANA actions.
 The author would like to thank Ryan Hamilton, who provided constant advice
 through this effort. Randall Meyer from Apple and Nick Grifka from Microsoft
 provided useful hints about the behavior of their respective operating systems.
+However, the author takes full responsibility for any errors above.
 
 Will Hawkins, Max Inden, Colin Perkins, and Michael Tuexen made improvements to
 this draft.
