@@ -163,6 +163,8 @@ and type IP_TCLASS.
 The resulting byte of data is the entire Type-of-Service byte from the IP
 header. The ECN mark constitutes the two least-significant bits of this byte.
 
+The same applies to the Linux-specific recvmmsg() call.
+
 ### Apple
 
 If a UDP message (UDP/IPv4) is received on an IPv4 socket, the ancillary data
@@ -236,6 +238,8 @@ These platforms expect a cmsg with level IPPROTO_IP and type IP_TOS if the
 destination is an IPv4 address, or a IPv4-mapped IPv6 address.
 
 Otherwise, they expect a cmsg with level IPPROTO_IPV6 and type IPV6_TCLASS.
+
+The same applies to the Linux-specific sendmmsg() call.
 
 ### Microsoft
 
