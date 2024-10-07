@@ -4,8 +4,8 @@
 
 Transport and Services Working Group                             M. Duke
 Internet-Draft                                                    Google
-Intended status: Informational                            28 August 2024
-Expires: 1 March 2025
+Intended status: Informational                            7 October 2024
+Expires: 10 April 2025
 
 
           Configuring UDP Sockets for ECN for Common Platforms
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 March 2025.
+   This Internet-Draft will expire on 10 April 2025.
 
 Copyright Notice
 
@@ -220,6 +220,8 @@ Table of Contents
    the IP header.  The ECN mark constitutes the two least-significant
    bits of this byte.
 
+   The same applies to the Linux-specific recvmmsg() call.
+
 3.2.2.  Apple
 
    If a UDP message (UDP/IPv4) is received on an IPv4 socket, the
@@ -298,6 +300,8 @@ Table of Contents
 
    Otherwise, they expect a cmsg with level IPPROTO_IPV6 and type
    IPV6_TCLASS.
+
+   The same applies to the Linux-specific sendmmsg() call.
 
 4.2.2.  Microsoft
 
