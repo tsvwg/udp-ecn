@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-06T00:52:40.940874+00:00",
+  "timestamp": "2024-10-08T00:47:39.290513+00:00",
   "repo": "martinduke/udp-ecn",
   "labels": [
     {
@@ -71,15 +71,15 @@
       "id": "I_kwDOMpG-ts6Uk5NO",
       "title": "Include `sendmmsg` and `recvmmsg` on Linux?",
       "url": "https://github.com/martinduke/udp-ecn/issues/4",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mxinden",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "On Linux, one can send and receive ECN marked datagrams using `sendmmsg` and `recvmmsg` (note the two `m`s).\r\n\r\nSee for example:\r\n\r\nhttps://github.com/quinn-rs/quinn/blob/bb02a12a8435a7732a1d762783eeacbb7e50418e/quinn-udp/src/unix.rs#L469-L470\r\n\r\nShould this be included in the draft? If yes, I can prepare a PR.",
       "createdAt": "2024-08-28T18:04:29Z",
-      "updatedAt": "2024-08-28T18:23:31Z",
-      "closedAt": null,
+      "updatedAt": "2024-10-07T20:05:30Z",
+      "closedAt": "2024-10-07T20:05:30Z",
       "comments": [
         {
           "author": "martinduke",
@@ -173,24 +173,26 @@
       "id": "PR_kwDOMpG-ts55yfg-",
       "title": "Mention Linux-specific sendmmsg and recvmmsg",
       "url": "https://github.com/martinduke/udp-ecn/pull/5",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "mxinden",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Closes #4.",
       "createdAt": "2024-08-29T07:04:27Z",
-      "updatedAt": "2024-09-05T13:10:31Z",
+      "updatedAt": "2024-10-07T20:05:29Z",
       "baseRepository": "martinduke/udp-ecn",
       "baseRefName": "main",
       "baseRefOid": "71bf2390bfac6986d4ccca4b3ac2df789816755d",
       "headRepository": "mxinden/udp-ecn",
       "headRefName": "sendmmsg-recvmmsg",
       "headRefOid": "56dbf52dfe58c95665c74acfa237923ef5d9f9c0",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-10-07T20:05:29Z",
+      "mergedAt": "2024-10-07T20:05:29Z",
+      "mergedBy": "martinduke",
+      "mergeCommit": {
+        "oid": "f72e6b03c0a54e181162cc31fd13214aa9bc0be5"
+      },
       "comments": [
         {
           "author": "mxinden",
@@ -200,7 +202,21 @@
           "updatedAt": "2024-09-05T13:10:30Z"
         }
       ],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOMpG-ts6MPWvY",
+          "commit": {
+            "abbreviatedOid": "56dbf52"
+          },
+          "author": "martinduke",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-07T20:05:24Z",
+          "updatedAt": "2024-10-07T20:05:24Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
