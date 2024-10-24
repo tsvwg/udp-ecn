@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-22T00:49:28.367940+00:00",
+  "timestamp": "2024-10-24T00:48:20.156215+00:00",
   "repo": "martinduke/udp-ecn",
   "labels": [
     {
@@ -87,6 +87,46 @@
           "body": "I think that adds clarity, so sure.",
           "createdAt": "2024-08-28T18:23:30Z",
           "updatedAt": "2024-08-28T18:23:30Z"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "id": "I_kwDOMpG-ts6bTqoI",
+      "title": "\"Limited\" application to UDP",
+      "url": "https://github.com/martinduke/udp-ecn/issues/6",
+      "state": "OPEN",
+      "author": "martinduke",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "The abstract uses that word.\r\n\r\nMagnus points out that it's not limited application, but limited deployment. RTP is big-ish; it's just that ECN didn't catch fire.",
+      "createdAt": "2024-10-22T14:26:44Z",
+      "updatedAt": "2024-10-22T14:26:44Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 7,
+      "id": "I_kwDOMpG-ts6bT2OF",
+      "title": "Clarify security considerations",
+      "url": "https://github.com/martinduke/udp-ecn/issues/7",
+      "state": "OPEN",
+      "author": "martinduke",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Say what I mean by this draft mitigating fingerprinting.\r\n\r\nIf ECN is widely deployed in clients, it makes it harder to identify what client is operating. This draft would ideally make ECN more widespread.",
+      "createdAt": "2024-10-22T14:43:33Z",
+      "updatedAt": "2024-10-22T14:45:25Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "martinduke",
+          "authorAssociation": "OWNER",
+          "body": "Furthermore, if clients only get some platforms to work, it identifies the OS",
+          "createdAt": "2024-10-22T14:45:24Z",
+          "updatedAt": "2024-10-22T14:45:24Z"
         }
       ]
     }
