@@ -101,7 +101,7 @@ marks, and retrieving the value for each incoming packet.
 
 ## Setting the socket to report incoming ECN marks
 
-### Linux and Apple
+### Linux, Apple and FreeBSD
 
 To report ECN, applications set a socket option to true using a setsockopt()
 call.
@@ -114,8 +114,11 @@ IP_RECVTOS.
 
 For dual-stack sockets, on Linux hosts the application sets both the
 IPV6_RECVTCLASS and IP_RECVTOS options to receive ECN markings on all incoming
-packets. On Apple hosts, the application only sets IPV6_RECVTCLASS; setting
-IP_RECVTOS will return an error.
+packets.
+On Apple and FreeBSD hosts, the application only sets the IPPROTO_IPV6-level
+socket option with name IPV6_RECVTCLASS; setting an IPPROTO_IP-level socket
+option on an IPv6 socket results in an error. In particular this applies to the
+IPPROTO_IP-level socket option with the name IP_RECVTOS.
 
 At the time of writing, an example implementation can be found at
 {{CHROMIUM-POSIX}}.
@@ -160,22 +163,24 @@ and type IP_TOS.
 If the incoming packet is IPv6, Linux will include a cmsg of level IPPROTO_IPV6
 and type IP_TCLASS.
 
-The resulting byte of data is the entire Type-of-Service byte from the IP
-header. The ECN mark constitutes the two least-significant bits of this byte.
+The resulting byte of data is the entire Type-of-Service byte from the IPv4
+header or the Traffic Class byte from the IPv6 header.
+The ECN mark constitutes the two least-significant bits of this byte.
 
 The same applies to the Linux-specific recvmmsg() call.
 
-### Apple
+### Apple and FreeBSD
 
 If a UDP message (UDP/IPv4) is received on an IPv4 socket, the ancillary data
 will contain a cmsg of level IPPROTO_IP and type IP_RECVTOS.
 The cmsg data contains an unsigned char.
 
 If a UDP message (UDP/IPv6 or UDP/IPv4) is received on an IPv6 socket, the
-ancillary data will contain a cmsg or level IPPROTO_IPV6 and type IP_RECVTCLASS.
+ancillary data will contain a cmsg or level IPPROTO_IPV6 and type IPV6_TCLASS.
 The cmsg data contains an int.
 
-The provided data is the entire Type-of-Service (TOS) byte from the IPv4 header.
+The provided data is the entire Type-of-Service (TOS) byte from the IPv4 header
+or the Traffic Class byte from the IPv6 header.
 The ECN mark constitutes the two least-significant bits of this byte.
 
 ### Windows
