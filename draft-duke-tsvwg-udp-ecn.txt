@@ -4,8 +4,8 @@
 
 Transport and Services Working Group                             M. Duke
 Internet-Draft                                                    Google
-Intended status: Informational                            7 October 2024
-Expires: 10 April 2025
+Intended status: Informational                           5 November 2024
+Expires: 9 May 2025
 
 
           Configuring UDP Sockets for ECN for Common Platforms
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 April 2025.
+   This Internet-Draft will expire on 9 May 2025.
 
 Copyright Notice
 
@@ -75,11 +75,11 @@ Table of Contents
    2.  Conventions and Definitions
    3.  Receiving ECN marks
      3.1.  Setting the socket to report incoming ECN marks
-       3.1.1.  Linux and Apple
+       3.1.1.  Linux, Apple and FreeBSD
        3.1.2.  Windows
      3.2.  Retrieving ECN marks on incoming packets
        3.2.1.  Linux
-       3.2.2.  Apple
+       3.2.2.  Apple and FreeBSD
        3.2.3.  Windows
    4.  Sending ECN marks
      4.1.  On a per-socket basis
@@ -154,7 +154,7 @@ Table of Contents
 
 3.1.  Setting the socket to report incoming ECN marks
 
-3.1.1.  Linux and Apple
+3.1.1.  Linux, Apple and FreeBSD
 
    To report ECN, applications set a socket option to true using a
    setsockopt() call.
@@ -167,8 +167,11 @@ Table of Contents
 
    For dual-stack sockets, on Linux hosts the application sets both the
    IPV6_RECVTCLASS and IP_RECVTOS options to receive ECN markings on all
-   incoming packets.  On Apple hosts, the application only sets
-   IPV6_RECVTCLASS; setting IP_RECVTOS will return an error.
+   incoming packets.  On Apple and FreeBSD hosts, the application only
+   sets the IPPROTO_IPV6-level socket option with name IPV6_RECVTCLASS;
+   setting an IPPROTO_IP-level socket option on an IPv6 socket results
+   in an error.  In particular this applies to the IPPROTO_IP-level
+   socket option with the name IP_RECVTOS.
 
    At the time of writing, an example implementation can be found at
    [CHROMIUM-POSIX].
@@ -217,12 +220,12 @@ Table of Contents
    IPPROTO_IPV6 and type IP_TCLASS.
 
    The resulting byte of data is the entire Type-of-Service byte from
-   the IP header.  The ECN mark constitutes the two least-significant
-   bits of this byte.
+   the IPv4 header or the Traffic Class byte from the IPv6 header.  The
+   ECN mark constitutes the two least-significant bits of this byte.
 
    The same applies to the Linux-specific recvmmsg() call.
 
-3.2.2.  Apple
+3.2.2.  Apple and FreeBSD
 
    If a UDP message (UDP/IPv4) is received on an IPv4 socket, the
    ancillary data will contain a cmsg of level IPPROTO_IP and type
@@ -230,11 +233,11 @@ Table of Contents
 
    If a UDP message (UDP/IPv6 or UDP/IPv4) is received on an IPv6
    socket, the ancillary data will contain a cmsg or level IPPROTO_IPV6
-   and type IP_RECVTCLASS.  The cmsg data contains an int.
+   and type IPV6_TCLASS.  The cmsg data contains an int.
 
    The provided data is the entire Type-of-Service (TOS) byte from the
-   IPv4 header.  The ECN mark constitutes the two least-significant bits
-   of this byte.
+   IPv4 header or the Traffic Class byte from the IPv6 header.  The ECN
+   mark constitutes the two least-significant bits of this byte.
 
 3.2.3.  Windows
 
