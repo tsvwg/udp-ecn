@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-05T00:47:30.124514+00:00",
+  "timestamp": "2024-11-07T00:47:37.053960+00:00",
   "repo": "martinduke/udp-ecn",
   "labels": [
     {
@@ -129,6 +129,22 @@
           "updatedAt": "2024-10-22T14:45:24Z"
         }
       ]
+    },
+    {
+      "number": 9,
+      "id": "I_kwDOMpG-ts6dHa8_",
+      "title": "Talk about cmsg for IPv4 packets on dual-stack sockets",
+      "url": "https://github.com/martinduke/udp-ecn/issues/9",
+      "state": "OPEN",
+      "author": "martinduke",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "On recvmsg(), Linux reports IP_TOS. Apple reports IPV6_TCLASS.\r\n\r\nsendmsg() is probably the same.",
+      "createdAt": "2024-11-05T16:44:23Z",
+      "updatedAt": "2024-11-05T16:44:24Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -139,7 +155,7 @@
       "url": "https://github.com/martinduke/udp-ecn/pull/2",
       "state": "CLOSED",
       "author": "tuexen",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "while there, fix also a typo.",
@@ -254,6 +270,48 @@
           "body": "",
           "createdAt": "2024-10-07T20:05:24Z",
           "updatedAt": "2024-10-07T20:05:24Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "id": "PR_kwDOMpG-ts6A8s3e",
+      "title": "Add FreeBSD specific text and cleanups",
+      "url": "https://github.com/martinduke/udp-ecn/pull/8",
+      "state": "MERGED",
+      "author": "tuexen",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-11-05T15:47:03Z",
+      "updatedAt": "2024-11-05T16:01:21Z",
+      "baseRepository": "martinduke/udp-ecn",
+      "baseRefName": "main",
+      "baseRefOid": "a7bafbe4d68eee0a4ff837b693c40fda51e96952",
+      "headRepository": "tuexen/udp-ecn",
+      "headRefName": "FreeBSD",
+      "headRefOid": "7b6a45351ec4df05441b485b489e91a5c9d74e1f",
+      "closedAt": "2024-11-05T16:01:21Z",
+      "mergedAt": "2024-11-05T16:01:21Z",
+      "mergedBy": "martinduke",
+      "mergeCommit": {
+        "oid": "db1291a1076a71bfb7737f3a78e3f8c9bb3b0284"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOMpG-ts6QAgzR",
+          "commit": {
+            "abbreviatedOid": "7b6a453"
+          },
+          "author": "martinduke",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-11-05T15:57:03Z",
+          "updatedAt": "2024-11-05T15:57:03Z",
           "comments": []
         }
       ]
