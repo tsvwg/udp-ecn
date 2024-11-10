@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-07T00:47:37.053960+00:00",
+  "timestamp": "2024-11-10T00:51:39.534355+00:00",
   "repo": "martinduke/udp-ecn",
   "labels": [
     {
@@ -143,6 +143,22 @@
       "body": "On recvmsg(), Linux reports IP_TOS. Apple reports IPV6_TCLASS.\r\n\r\nsendmsg() is probably the same.",
       "createdAt": "2024-11-05T16:44:23Z",
       "updatedAt": "2024-11-05T16:44:24Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 10,
+      "id": "I_kwDOMpG-ts6dkMRQ",
+      "title": "document 1 byte vs 4 byte cmsg values",
+      "url": "https://github.com/martinduke/udp-ecn/issues/10",
+      "state": "OPEN",
+      "author": "marten-seemann",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Some platforms require a uint32, some require a uint8. It also depends on the kernel version. Happy to provide some more details on what I did in quic-go, if there is interest in expanding this document.",
+      "createdAt": "2024-11-08T09:53:37Z",
+      "updatedAt": "2024-11-08T09:53:37Z",
       "closedAt": null,
       "comments": []
     }
