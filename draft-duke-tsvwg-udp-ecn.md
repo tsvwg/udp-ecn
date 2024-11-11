@@ -42,8 +42,8 @@ informative:
 --- abstract
 
 Explicit Congestion Notification (ECN) applies to all transport protocols in
-principle. However, it had limited applications for UDP until QUIC became widely
-deployed. As a result, documentation of UDP socket APIs for ECN on various
+principle. However, it had limited deployment for UDP until QUIC became widely
+adopted. As a result, documentation of UDP socket APIs for ECN on various
 platforms is sparse. This document records the results of experimenting with
 these APIs in order to get ECN working on UDP for Chromium on Apple, Linux, and
 Windows platforms.
@@ -262,7 +262,7 @@ This document is a guide to enabling these capabilities, which incurs no
 additional security considerations.
 
 Note that implementing ECN capabilities on some platforms, but not others, can
-help to fingerprint the operating system in use by a host, which can have
+help peers identify the operating system in use by a host, which can have
 privacy implications. This document aims to mitigate that possibility.
 
 # IANA Considerations
