@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-10T00:51:39.534355+00:00",
+  "timestamp": "2024-11-12T00:46:58.578154+00:00",
   "repo": "martinduke/udp-ecn",
   "labels": [
     {
@@ -95,15 +95,15 @@
       "id": "I_kwDOMpG-ts6bTqoI",
       "title": "\"Limited\" application to UDP",
       "url": "https://github.com/martinduke/udp-ecn/issues/6",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "martinduke",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "The abstract uses that word.\r\n\r\nMagnus points out that it's not limited application, but limited deployment. RTP is big-ish; it's just that ECN didn't catch fire.",
       "createdAt": "2024-10-22T14:26:44Z",
-      "updatedAt": "2024-10-22T14:26:44Z",
-      "closedAt": null,
+      "updatedAt": "2024-11-11T22:47:27Z",
+      "closedAt": "2024-11-11T22:47:27Z",
       "comments": []
     },
     {
@@ -111,15 +111,15 @@
       "id": "I_kwDOMpG-ts6bT2OF",
       "title": "Clarify security considerations",
       "url": "https://github.com/martinduke/udp-ecn/issues/7",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "martinduke",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "Say what I mean by this draft mitigating fingerprinting.\r\n\r\nIf ECN is widely deployed in clients, it makes it harder to identify what client is operating. This draft would ideally make ECN more widespread.",
       "createdAt": "2024-10-22T14:43:33Z",
-      "updatedAt": "2024-10-22T14:45:25Z",
-      "closedAt": null,
+      "updatedAt": "2024-11-11T22:47:45Z",
+      "closedAt": "2024-11-11T22:47:45Z",
       "comments": [
         {
           "author": "martinduke",
@@ -142,9 +142,17 @@
       "labels": [],
       "body": "On recvmsg(), Linux reports IP_TOS. Apple reports IPV6_TCLASS.\r\n\r\nsendmsg() is probably the same.",
       "createdAt": "2024-11-05T16:44:23Z",
-      "updatedAt": "2024-11-05T16:44:24Z",
+      "updatedAt": "2024-11-11T22:05:08Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "martinduke",
+          "authorAssociation": "OWNER",
+          "body": "What is it for Windows?",
+          "createdAt": "2024-11-11T22:05:06Z",
+          "updatedAt": "2024-11-11T22:05:06Z"
+        }
+      ]
     },
     {
       "number": 10,
@@ -159,6 +167,22 @@
       "body": "Some platforms require a uint32, some require a uint8. It also depends on the kernel version. Happy to provide some more details on what I did in quic-go, if there is interest in expanding this document.",
       "createdAt": "2024-11-08T09:53:37Z",
       "updatedAt": "2024-11-08T09:53:37Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 11,
+      "id": "I_kwDOMpG-ts6d-4Ka",
+      "title": "Windows sockopt for sending ECN",
+      "url": "https://github.com/martinduke/udp-ecn/issues/11",
+      "state": "OPEN",
+      "author": "martinduke",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "This is not described in the text.",
+      "createdAt": "2024-11-11T22:06:24Z",
+      "updatedAt": "2024-11-11T22:06:24Z",
       "closedAt": null,
       "comments": []
     }
@@ -331,6 +355,34 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 12,
+      "id": "PR_kwDOMpG-ts6BkFMx",
+      "title": "Nits",
+      "url": "https://github.com/martinduke/udp-ecn/pull/12",
+      "state": "MERGED",
+      "author": "martinduke",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Fix #6, #7",
+      "createdAt": "2024-11-11T22:42:02Z",
+      "updatedAt": "2024-11-11T22:47:27Z",
+      "baseRepository": "martinduke/udp-ecn",
+      "baseRefName": "main",
+      "baseRefOid": "db1291a1076a71bfb7737f3a78e3f8c9bb3b0284",
+      "headRepository": "martinduke/udp-ecn",
+      "headRefName": "nits",
+      "headRefOid": "2bf14f7dc7ddbd0d5eb1b0a02b9b94b8551c3604",
+      "closedAt": "2024-11-11T22:47:26Z",
+      "mergedAt": "2024-11-11T22:47:26Z",
+      "mergedBy": "martinduke",
+      "mergeCommit": {
+        "oid": "48cb2676e207164daab33c396c706f614aff2407"
+      },
+      "comments": [],
+      "reviews": []
     }
   ]
 }
