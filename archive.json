@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-17T00:54:44.644447+00:00",
+  "timestamp": "2024-11-19T00:51:47.732821+00:00",
   "repo": "martinduke/udp-ecn",
   "labels": [
     {
@@ -183,6 +183,22 @@
       "body": "This is not described in the text.",
       "createdAt": "2024-11-11T22:06:24Z",
       "updatedAt": "2024-11-11T22:06:24Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 13,
+      "id": "I_kwDOMpG-ts6fJS-p",
+      "title": "Network Framework",
+      "url": "https://github.com/martinduke/udp-ecn/issues/13",
+      "state": "OPEN",
+      "author": "martinduke",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "At IETF 121, Stewart said he would like to include Network Framework in the document. If someone from Apple provides text, this is the issue for it.",
+      "createdAt": "2024-11-18T21:40:07Z",
+      "updatedAt": "2024-11-18T21:40:07Z",
       "closedAt": null,
       "comments": []
     }
