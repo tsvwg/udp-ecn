@@ -403,7 +403,8 @@ Acknowledgments
    respective operating systems.  However, the author takes full
    responsibility for any errors above.
 
-   Will Hawkins, Max Inden, Colin Perkins, and Michael Tuexen made
+   Neal Cardwell, Gorry Fairhurst, Max Franke, Rodney Grimes,l Will
+   Hawkins, Max Inden, Colin Perkins, and Michael Tuexen made
    improvements to this draft.
 
 Author's Address
