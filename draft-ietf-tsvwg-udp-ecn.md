@@ -4,7 +4,7 @@ abbrev: "udp-ecn"
 category: info
 ipr: trust200902
 
-docname: draft-duke-tsvwg-udp-ecn-latest
+docname: draft-ietf-tsvwg-udp-ecn-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
 date: {DATE}
 area: "Web and Internet Transport"
