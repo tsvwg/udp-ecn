@@ -4,12 +4,12 @@
 
 Transport and Services Working Group                             M. Duke
 Internet-Draft                                                    Google
-Intended status: Informational                          11 November 2024
-Expires: 15 May 2025
+Intended status: Informational                          19 December 2024
+Expires: 22 June 2025
 
 
           Configuring UDP Sockets for ECN for Common Platforms
-                    draft-duke-tsvwg-udp-ecn-latest
+                    draft-ietf-tsvwg-udp-ecn-latest
 
 Abstract
 
@@ -28,7 +28,7 @@ About This Document
    The latest revision of this draft can be found at
    https://martinduke.github.io/udp-ecn/draft-duke-tsvwg-udp-ecn.html.
    Status information for this document may be found at
-   https://datatracker.ietf.org/doc/draft-duke-tsvwg-udp-ecn/.
+   https://datatracker.ietf.org/doc/draft-ietf-tsvwg-udp-ecn/.
 
    Discussion of this document takes place on the Transport and Services
    Working Group Working Group mailing list (mailto:tsvwg@ietf.org),
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 May 2025.
+   This Internet-Draft will expire on 22 June 2025.
 
 Copyright Notice
 
