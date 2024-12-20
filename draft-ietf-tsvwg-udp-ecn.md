@@ -39,6 +39,10 @@ informative:
    title: "udp_socket_win.cc"
    target: "https://source.chromium.org/chromium/chromium/src/+/main:net/socket/udp_socket_win.cc"
 
+ WINDOWS-SOCKOPT:
+   title: "MSDN - IPPROTO_IP socket options"
+   target: "https://learn.microsoft.com/en-us/windows/win32/winsock/ipproto-ip-socket-options"
+
 --- abstract
 
 Explicit Congestion Notification (ECN) applies to all transport protocols in
@@ -130,8 +134,8 @@ enable ECN reporting regardless of the IP version.
 
 However, this can also be accomplished by calling setsockopt() and using
 options of level IPPROTO_IP and name IP_RECVECN for IPv4, and IPPROTO_IPV6
-and IPV6_RECVECN for IPv6. The author was unable to identify any online
-documentation of these options at the time of writing.
+and IPV6_RECVECN for IPv6. These options are documented at
+{{WINDOWS-SOCKOPT}}.
 
 For dual-stack sockets, WSASetRecvIPEcn() will not enable ECN reporting for
 IPv4. This requires a separate setsockopt() call using the IP_RECVECN option.
@@ -176,7 +180,7 @@ will contain a cmsg of level IPPROTO_IP and type IP_RECVTOS.
 The cmsg data contains an unsigned char.
 
 If a UDP message (UDP/IPv6 or UDP/IPv4) is received on an IPv6 socket, the
-ancillary data will contain a cmsg or level IPPROTO_IPV6 and type IPV6_TCLASS.
+ancillary data will contain a cmsg of level IPPROTO_IPV6 and type IPV6_TCLASS.
 The cmsg data contains an int.
 
 The provided data is the entire Type-of-Service (TOS) byte from the IPv4 header
@@ -229,8 +233,8 @@ An example of the technique described above can be found at {{CHROMIUM-POSIX}}.
 
 ### Windows
 
-The author did not experiment with setting a windows socket to send an ECN
-mark.
+At the time of this writting, Windows does not provide a way to configure a
+marking on a per-socket basis. 
 
 ## On a per-packet basis
 
