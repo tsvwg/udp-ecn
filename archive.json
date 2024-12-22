@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-12-19T00:52:17.829536+00:00",
+  "timestamp": "2024-12-22T00:53:46.807985+00:00",
   "repo": "martinduke/udp-ecn",
   "labels": [
     {
@@ -182,9 +182,17 @@
       "labels": [],
       "body": "This is not described in the text.",
       "createdAt": "2024-11-11T22:06:24Z",
-      "updatedAt": "2024-11-11T22:06:24Z",
+      "updatedAt": "2024-12-20T18:38:25Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "guhetier",
+          "authorAssociation": "NONE",
+          "body": "Hi,\r\n\r\nWindows doesn't have a sockopt for sending ECN on UDP at this time.\r\nECN can only be set on a per-packet basis using a cmsg (as already described in the document).\r\n\r\nI created #17 to add clarify it + add a link to the IP_RECVECN online documentation.",
+          "createdAt": "2024-12-20T18:38:24Z",
+          "updatedAt": "2024-12-20T18:38:24Z"
+        }
+      ]
     },
     {
       "number": 13,
@@ -201,6 +209,46 @@
       "updatedAt": "2024-11-18T21:40:07Z",
       "closedAt": null,
       "comments": []
+    },
+    {
+      "number": 14,
+      "id": "I_kwDOMpG-ts6j_b2T",
+      "title": "Clarify Apple dual-stack behavior",
+      "url": "https://github.com/martinduke/udp-ecn/issues/14",
+      "state": "OPEN",
+      "author": "martinduke",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "From an [email](https://mailarchive.ietf.org/arch/msg/tsvwg/fXLn9OuKYWznQNroBX6MEMpX8H4) by Max Franke:\r\n\r\n\r\n\r\n3.1 currently says:\r\n\r\n> For dual-stack sockets, on Linux hosts the application sets both the IPV6_RECVTCLASS and IP_RECVTOS options to receive ECN markings on all incoming packets. On Apple and FreeBSD hosts, the application only sets the IPPROTO_IPV6-level socket option with name IPV6_RECVTCLASS; setting an IPPROTO_IP-level socket option on an IPv6 socket results in an error.\r\n\r\nMake it clear that the Apple behavior is to receive marks on all incoming packets, not just v6.\r\n",
+      "createdAt": "2024-12-19T20:09:01Z",
+      "updatedAt": "2024-12-19T20:09:51Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 15,
+      "id": "I_kwDOMpG-ts6j_ejf",
+      "title": "Terminology",
+      "url": "https://github.com/martinduke/udp-ecn/issues/15",
+      "state": "OPEN",
+      "author": "martinduke",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "From this [thread ](https://mailarchive.ietf.org/arch/msg/tsvwg/EDoWsI92tTLYjoFJ7ihI40Yt_FA/)\r\n\r\n\"ECN Mark\" => \"ECN Codepoint\" or \"CE mark\", depending on context\r\n\r\n\"TOS byte\" => \"legacy TOS byte\"",
+      "createdAt": "2024-12-19T20:14:03Z",
+      "updatedAt": "2024-12-19T20:18:15Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "martinduke",
+          "authorAssociation": "OWNER",
+          "body": "From Greg White:\r\n\r\n> On terminology, I noticed the statement in Section 3: \u201cNetwork devices can change the ECN bits in the IP header.\u201d\r\n> \r\n> This should be \u201cNetwork devices can change the ECN codepoint in the IP header.\u201d and it would be worth pointing to RFC3168 and RFC9331 regarding the allowed transitions that are expected to occur.\r\n> \r\n> I\u2019ve noticed that even some current vendor documentation refers to the obsolete RFC2481 definition of the \u201cECT bit\u201d and the \u201cCE bit\u201d as opposed to the \u201cECN Field\u201d and its codepoints.",
+          "createdAt": "2024-12-19T20:18:05Z",
+          "updatedAt": "2024-12-19T20:18:15Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -397,6 +445,58 @@
       "mergeCommit": {
         "oid": "48cb2676e207164daab33c396c706f614aff2407"
       },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 16,
+      "id": "PR_kwDOMpG-ts6F2S7G",
+      "title": "Editorial comments during adoption",
+      "url": "https://github.com/martinduke/udp-ecn/pull/16",
+      "state": "OPEN",
+      "author": "martinduke",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes #14\r\nFixes #15 ",
+      "createdAt": "2024-12-19T22:00:57Z",
+      "updatedAt": "2024-12-19T22:16:09Z",
+      "baseRepository": "martinduke/udp-ecn",
+      "baseRefName": "main",
+      "baseRefOid": "2fe34e29ca89af05c562ca3626dfd0725935deec",
+      "headRepository": "martinduke/udp-ecn",
+      "headRefName": "editorial",
+      "headRefOid": "38f1d8c294f29c8768a01ef0812fff9df9012046",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 17,
+      "id": "PR_kwDOMpG-ts6F8UUn",
+      "title": "Update Windows related details",
+      "url": "https://github.com/martinduke/udp-ecn/pull/17",
+      "state": "OPEN",
+      "author": "guhetier",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "- Fix a typo\r\n- Add link to MSDN documentation for the IP_RECVECN documentation.\r\n- Clarify that ECN cannot be sent on a per-socket basis on Windows currently, only per-packet.",
+      "createdAt": "2024-12-20T18:37:05Z",
+      "updatedAt": "2024-12-20T18:37:05Z",
+      "baseRepository": "martinduke/udp-ecn",
+      "baseRefName": "main",
+      "baseRefOid": "2fe34e29ca89af05c562ca3626dfd0725935deec",
+      "headRepository": "guhetier/udp-ecn",
+      "headRefName": "patch-1",
+      "headRefOid": "a86743067f63fb32affdf082ca7a055c12de86e5",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
       "comments": [],
       "reviews": []
     }
