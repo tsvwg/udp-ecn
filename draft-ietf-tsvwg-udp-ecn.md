@@ -59,14 +59,14 @@ Windows platforms.
 {{?RFC3168}} reserves two bits in the IP header for Explicit Congestion
 Notification (ECN), which provides network feedback to endpoint congestion
 controllers. This has historically mostly been relevant to TCP ({{?RFC9293}}),
-where any incoming ECN marks are internally consumed by the kernel, and
+where any incoming ECN codepoints are internally consumed by the kernel, and
 therefore imply no application interface except enabling and disabling the
 capability.
 
 The Stream Control Transport Protocol (SCTP) ({{?RFC9260}}) has long supported
 ECN in its design. SCTP is sometimes carried over DTLS and UDP ({{?RFC8261}}).
 In principle, user-space implementers might have leveraged UDP ECN APIs to
-deliver ECN markings between SCTP and the UDP socket. The author is not aware
+deliver ECN codepoints between SCTP and the UDP socket. The author is not aware
 of any such efforts.
 
 {{?RFC6679}} defines ECN over RTP over UDP. The author is aware of a research
@@ -82,7 +82,7 @@ platforms on which Chromium is deployed revealed that many ECN-related UDP
 socket interfaces are poorly documented.
 
 This document provides a record of that experience, to encourage further support
-for ECN in other QUIC implementations, and indeed any consumer of ECN markings
+for ECN in other QUIC implementations, and indeed any consumer of ECN codepoints
 that operates over UDP.
 
 
@@ -94,16 +94,16 @@ This document is not a general tutorial on UDP socket programming, and assumes
 familiarity with basic socket concepts like binding, socket options, and
 common system error codes.
 
-# Receiving ECN marks
+# Receiving ECN codepoints
 
-Network devices can change the ECN bits in the IP header. Since this feedback
-is required at the packet sender, the packet receiver needs to extract this
-codepoint from the UDP socket in order to report to the sender.
+Network devices can change the ECN codepoint in the IP header. Since this
+feedback is required at the packet sender, the packet receiver needs to extract
+this codepoint from the UDP socket in order to report to the sender.
 
 There are two components to this: setting the socket to report incoming ECN
 marks, and retrieving the value for each incoming packet.
 
-## Setting the socket to report incoming ECN marks
+## Setting the socket to report incoming ECN codepoints
 
 ### Linux, Apple and FreeBSD
 
@@ -117,12 +117,12 @@ IPv4 sockets require a socket option of level IPPROTO_IP and name
 IP_RECVTOS.
 
 For dual-stack sockets, on Linux hosts the application sets both the
-IPV6_RECVTCLASS and IP_RECVTOS options to receive ECN markings on all incoming
-packets.
-On Apple and FreeBSD hosts, the application only sets the IPPROTO_IPV6-level
-socket option with name IPV6_RECVTCLASS; setting an IPPROTO_IP-level socket
-option on an IPv6 socket results in an error. In particular this applies to the
-IPPROTO_IP-level socket option with the name IP_RECVTOS.
+IPV6_RECVTCLASS and IP_RECVTOS options to receive ECN codepoints on all incoming
+packets. On Apple and FreeBSD hosts, the application only sets the
+IPPROTO_IPV6-level socket option with name IPV6_RECVTCLASS to receive codepoints
+for both v4 and v6; setting an IPPROTO_IP-level socket option on an IPv6 socket
+results in an error. In particular this applies to the IPPROTO_IP-level socket
+option with the name IP_RECVTOS.
 
 At the time of writing, an example implementation can be found at
 {{CHROMIUM-POSIX}}.
@@ -148,7 +148,7 @@ IP_RECVECN.
 At the time of writing, an example implementation can be found at
 {{CHROMIUM-WINDOWS}}.
 
-## Retrieving ECN marks on incoming packets
+## Retrieving ECN codepoints on incoming packets
 
 All platforms described in this document require the use of a recvmsg() call to
 read data from the socket to retrieve ECN information, because that information
@@ -167,9 +167,9 @@ and type IP_TOS.
 If the incoming packet is IPv6, Linux will include a cmsg of level IPPROTO_IPV6
 and type IP_TCLASS.
 
-The resulting byte of data is the entire Type-of-Service byte from the IPv4
-header or the Traffic Class byte from the IPv6 header.
-The ECN mark constitutes the two least-significant bits of this byte.
+The resulting report contains the entire IP header byte, which includes other
+fields. The ECN codepoint constitutes the two least-significant bits of this
+byte.
 
 The same applies to the Linux-specific recvmmsg() call.
 
@@ -183,9 +183,9 @@ If a UDP message (UDP/IPv6 or UDP/IPv4) is received on an IPv6 socket, the
 ancillary data will contain a cmsg of level IPPROTO_IPV6 and type IPV6_TCLASS.
 The cmsg data contains an int.
 
-The provided data is the entire Type-of-Service (TOS) byte from the IPv4 header
-or the Traffic Class byte from the IPv6 header.
-The ECN mark constitutes the two least-significant bits of this byte.
+The provided data is the entire byte from the IP header, which includes other
+fields. The ECN codepoint constitutes the two least-significant bits of this
+byte.
 
 ### Windows
 
@@ -195,13 +195,13 @@ IPPROTO_IP and type IP_ECN.
 If the incoming packet is IPv6, the socket will include a cmsg of level
 IPPROTO_IPV6 and type IPV6_ECN.
 
-The resulting integer solely consists of the ECN mark, and requires no further
-bitwise operations.
+The resulting integer solely consists of the ECN codepoint, and requires no
+further bitwise operations.
 
-# Sending ECN marks
+# Sending ECN codepoints
 
 Existing ECN specifications envision a particular connection consistently
-sending the same ECN marking. It might transition that marking after
+sending the same ECN codepoint. It might transition that marking after
 successfully completing a handshake, recognizing the path or the peer do not
 support ECN, or transitioning to a new path. Therefore, using a socket option
 to configure a consistent marking is generally more resource-efficient.
@@ -220,7 +220,7 @@ socket option of level IPPROTO_IP and name IP_TOS.
 For IPv6 packets, they use level IPPROTO_IPV6 and name IPV6_TCLASS.
 
 This setsockopt() call also sets the Differentiated Services Code Point (DSCP)
-bits that make up the rest of the TOS byte. Applications making this call will
+bits that make up the rest of the header byte. Applications making this call will
 generally want to preserve any existing DSCP setting, which might require a
 getsockopt() call.
 
@@ -284,5 +284,5 @@ through this effort. Randall Meyer from Apple and Nick Grifka from Microsoft
 provided useful hints about the behavior of their respective operating systems.
 However, the author takes full responsibility for any errors above.
 
-Will Hawkins, Max Inden, Colin Perkins, and Michael Tuexen made improvements to
-this draft.
+Neal Cardwell, Gorry Fairhurst, Max Franke, Rodney Grimes,l Will Hawkins, Max
+Inden, Colin Perkins, and Michael Tuexen made improvements to this draft.
