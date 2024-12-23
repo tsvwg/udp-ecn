@@ -1054,7 +1054,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Duke</td>
-<td class="center">Expires 22 June 2025</td>
+<td class="center">Expires 26 June 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1067,12 +1067,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-tsvwg-udp-ecn-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-12-19" class="published">19 December 2024</time>
+<time datetime="2024-12-23" class="published">23 December 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-06-22">22 June 2025</time></dd>
+<dd class="expires"><time datetime="2025-06-26">26 June 2025</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1127,7 +1127,7 @@ Windows platforms.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 22 June 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 26 June 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1336,8 +1336,8 @@ IPPROTO_IP-level socket option with the name IP_RECVTOS.<a href="#section-3.1.1-
 enable ECN reporting regardless of the IP version.<a href="#section-3.1.2-1" class="pilcrow">¶</a></p>
 <p id="section-3.1.2-2">However, this can also be accomplished by calling setsockopt() and using
 options of level IPPROTO_IP and name IP_RECVECN for IPv4, and IPPROTO_IPV6
-and IPV6_RECVECN for IPv6. The author was unable to identify any online
-documentation of these options at the time of writing.<a href="#section-3.1.2-2" class="pilcrow">¶</a></p>
+and IPV6_RECVECN for IPv6. These options are documented at
+<span>[<a href="#WINDOWS-SOCKOPT" class="cite xref">WINDOWS-SOCKOPT</a>]</span>.<a href="#section-3.1.2-2" class="pilcrow">¶</a></p>
 <p id="section-3.1.2-3">For dual-stack sockets, WSASetRecvIPEcn() will not enable ECN reporting for
 IPv4. This requires a separate setsockopt() call using the IP_RECVECN option.<a href="#section-3.1.2-3" class="pilcrow">¶</a></p>
 <p id="section-3.1.2-4">If a socket is bound to a IPv6-mapped IPv4 address (i.e. it is of the format
@@ -1386,7 +1386,7 @@ The ECN mark constitutes the two least-significant bits of this byte.<a href="#s
 will contain a cmsg of level IPPROTO_IP and type IP_RECVTOS.
 The cmsg data contains an unsigned char.<a href="#section-3.2.2-1" class="pilcrow">¶</a></p>
 <p id="section-3.2.2-2">If a UDP message (UDP/IPv6 or UDP/IPv4) is received on an IPv6 socket, the
-ancillary data will contain a cmsg or level IPPROTO_IPV6 and type IPV6_TCLASS.
+ancillary data will contain a cmsg of level IPPROTO_IPV6 and type IPV6_TCLASS.
 The cmsg data contains an int.<a href="#section-3.2.2-2" class="pilcrow">¶</a></p>
 <p id="section-3.2.2-3">The provided data is the entire Type-of-Service (TOS) byte from the IPv4 header
 or the Traffic Class byte from the IPv6 header.
@@ -1452,8 +1452,8 @@ hypothesis.<a href="#section-4.1.1-4" class="pilcrow">¶</a></p>
           <h4 id="name-windows-3">
 <a href="#section-4.1.2" class="section-number selfRef">4.1.2. </a><a href="#name-windows-3" class="section-name selfRef">Windows</a>
           </h4>
-<p id="section-4.1.2-1">The author did not experiment with setting a windows socket to send an ECN
-mark.<a href="#section-4.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.1.2-1">At the time of this writing, Windows does not provide a way to configure
+marking on a per-socket basis.<a href="#section-4.1.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1551,6 +1551,10 @@ privacy implications. This document aims to mitigate that possibility.<a href="#
 <dt id="CHROMIUM-WINDOWS">[CHROMIUM-WINDOWS]</dt>
         <dd>
 <span class="refTitle">"udp_socket_win.cc"</span>, <span>n.d.</span>, <span>&lt;<a href="https://source.chromium.org/chromium/chromium/src/+/main:net/socket/udp_socket_win.cc">https://source.chromium.org/chromium/chromium/src/+/main:net/socket/udp_socket_win.cc</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="WINDOWS-SOCKOPT">[WINDOWS-SOCKOPT]</dt>
+        <dd>
+<span class="refTitle">"MSDN - IPPROTO_IP socket options"</span>, <span>n.d.</span>, <span>&lt;<a href="https://learn.microsoft.com/en-us/windows/win32/winsock/ipproto-ip-socket-options">https://learn.microsoft.com/en-us/windows/win32/winsock/ipproto-ip-socket-options</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC3168">[RFC3168]</dt>
         <dd>

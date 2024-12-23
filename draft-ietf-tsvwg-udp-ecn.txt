@@ -4,8 +4,8 @@
 
 Transport and Services Working Group                             M. Duke
 Internet-Draft                                                    Google
-Intended status: Informational                          19 December 2024
-Expires: 22 June 2025
+Intended status: Informational                          23 December 2024
+Expires: 26 June 2025
 
 
           Configuring UDP Sockets for ECN for Common Platforms
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 June 2025.
+   This Internet-Draft will expire on 26 June 2025.
 
 Copyright Notice
 
@@ -183,9 +183,8 @@ Table of Contents
 
    However, this can also be accomplished by calling setsockopt() and
    using options of level IPPROTO_IP and name IP_RECVECN for IPv4, and
-   IPPROTO_IPV6 and IPV6_RECVECN for IPv6.  The author was unable to
-   identify any online documentation of these options at the time of
-   writing.
+   IPPROTO_IPV6 and IPV6_RECVECN for IPv6.  These options are documented
+   at [WINDOWS-SOCKOPT].
 
    For dual-stack sockets, WSASetRecvIPEcn() will not enable ECN
    reporting for IPv4.  This requires a separate setsockopt() call using
@@ -232,7 +231,7 @@ Table of Contents
    IP_RECVTOS.  The cmsg data contains an unsigned char.
 
    If a UDP message (UDP/IPv6 or UDP/IPv4) is received on an IPv6
-   socket, the ancillary data will contain a cmsg or level IPPROTO_IPV6
+   socket, the ancillary data will contain a cmsg of level IPPROTO_IPV6
    and type IPV6_TCLASS.  The cmsg data contains an int.
 
    The provided data is the entire Type-of-Service (TOS) byte from the
@@ -288,8 +287,8 @@ Table of Contents
 
 4.1.2.  Windows
 
-   The author did not experiment with setting a windows socket to send
-   an ECN mark.
+   At the time of this writing, Windows does not provide a way to
+   configure marking on a per-socket basis.
 
 4.2.  On a per-packet basis
 
@@ -359,6 +358,11 @@ Table of Contents
               "udp_socket_win.cc", n.d.,
               <https://source.chromium.org/chromium/chromium/
               src/+/main:net/socket/udp_socket_win.cc>.
+
+   [WINDOWS-SOCKOPT]
+              "MSDN - IPPROTO_IP socket options", n.d.,
+              <https://learn.microsoft.com/en-us/windows/win32/winsock/
+              ipproto-ip-socket-options>.
 
    [RFC3168]  Ramakrishnan, K., Floyd, S., and D. Black, "The Addition
               of Explicit Congestion Notification (ECN) to IP",
