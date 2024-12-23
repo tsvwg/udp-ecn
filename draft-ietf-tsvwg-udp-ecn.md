@@ -254,7 +254,7 @@ The same applies to the Linux-specific sendmmsg() call.
 
 Windows uses a cmsg with level IPPROTO_IP and type IP_ECN for IPv4 packets.
 
-Windows uses a cmsg with level IPPROTO_IPV6 and type IPV6_ECN for IPv6 packets.
+Windows uses a cmsg with level IPPROTO_IPV6 and type IPV6_ECN for IPv6 packets.ee
 
 An example of the technique described above can be found at
 {{CHROMIUM-WINDOWS}}.
@@ -284,5 +284,6 @@ through this effort. Randall Meyer from Apple and Nick Grifka from Microsoft
 provided useful hints about the behavior of their respective operating systems.
 However, the author takes full responsibility for any errors above.
 
-Neal Cardwell, Gorry Fairhurst, Max Franke, Rodney Grimes,l Will Hawkins, Max
-Inden, Colin Perkins, and Michael Tuexen made improvements to this draft.
+Neal Cardwell, Gorry Fairhurst, Max Franke, Rodney Grimes, Will Hawkins,
+Guillaume H&eacute;tier, Max Inden, Colin Perkins, and Michael Tuexen made
+improvements to this draft.
