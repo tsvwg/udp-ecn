@@ -233,8 +233,8 @@ An example of the technique described above can be found at {{CHROMIUM-POSIX}}.
 
 ### Windows
 
-At the time of this writing, Windows does not provide a way to configure a
-marking on a per-socket basis. 
+At the time of this writing, Windows does not provide a way to configure
+marking on a per-socket basis.
 
 ## On a per-packet basis
 
