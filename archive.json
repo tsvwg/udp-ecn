@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-12-22T00:53:46.807985+00:00",
+  "timestamp": "2024-12-24T00:49:12.417843+00:00",
   "repo": "martinduke/udp-ecn",
   "labels": [
     {
@@ -142,7 +142,7 @@
       "labels": [],
       "body": "On recvmsg(), Linux reports IP_TOS. Apple reports IPV6_TCLASS.\r\n\r\nsendmsg() is probably the same.",
       "createdAt": "2024-11-05T16:44:23Z",
-      "updatedAt": "2024-11-11T22:05:08Z",
+      "updatedAt": "2024-12-23T21:39:00Z",
       "closedAt": null,
       "comments": [
         {
@@ -151,6 +151,13 @@
           "body": "What is it for Windows?",
           "createdAt": "2024-11-11T22:05:06Z",
           "updatedAt": "2024-11-11T22:05:06Z"
+        },
+        {
+          "author": "martinduke",
+          "authorAssociation": "OWNER",
+          "body": "Question for @guhetier",
+          "createdAt": "2024-12-23T21:38:59Z",
+          "updatedAt": "2024-12-23T21:38:59Z"
         }
       ]
     },
@@ -175,22 +182,29 @@
       "id": "I_kwDOMpG-ts6d-4Ka",
       "title": "Windows sockopt for sending ECN",
       "url": "https://github.com/martinduke/udp-ecn/issues/11",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "martinduke",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "This is not described in the text.",
       "createdAt": "2024-11-11T22:06:24Z",
-      "updatedAt": "2024-12-20T18:38:25Z",
-      "closedAt": null,
+      "updatedAt": "2024-12-23T22:09:25Z",
+      "closedAt": "2024-12-23T22:09:24Z",
       "comments": [
         {
           "author": "guhetier",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "Hi,\r\n\r\nWindows doesn't have a sockopt for sending ECN on UDP at this time.\r\nECN can only be set on a per-packet basis using a cmsg (as already described in the document).\r\n\r\nI created #17 to add clarify it + add a link to the IP_RECVECN online documentation.",
           "createdAt": "2024-12-20T18:38:24Z",
           "updatedAt": "2024-12-20T18:38:24Z"
+        },
+        {
+          "author": "martinduke",
+          "authorAssociation": "OWNER",
+          "body": "Fixed by #17",
+          "createdAt": "2024-12-23T22:09:24Z",
+          "updatedAt": "2024-12-23T22:09:24Z"
         }
       ]
     },
@@ -215,15 +229,15 @@
       "id": "I_kwDOMpG-ts6j_b2T",
       "title": "Clarify Apple dual-stack behavior",
       "url": "https://github.com/martinduke/udp-ecn/issues/14",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "martinduke",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "From an [email](https://mailarchive.ietf.org/arch/msg/tsvwg/fXLn9OuKYWznQNroBX6MEMpX8H4) by Max Franke:\r\n\r\n\r\n\r\n3.1 currently says:\r\n\r\n> For dual-stack sockets, on Linux hosts the application sets both the IPV6_RECVTCLASS and IP_RECVTOS options to receive ECN markings on all incoming packets. On Apple and FreeBSD hosts, the application only sets the IPPROTO_IPV6-level socket option with name IPV6_RECVTCLASS; setting an IPPROTO_IP-level socket option on an IPv6 socket results in an error.\r\n\r\nMake it clear that the Apple behavior is to receive marks on all incoming packets, not just v6.\r\n",
       "createdAt": "2024-12-19T20:09:01Z",
-      "updatedAt": "2024-12-19T20:09:51Z",
-      "closedAt": null,
+      "updatedAt": "2024-12-23T21:41:44Z",
+      "closedAt": "2024-12-23T21:41:43Z",
       "comments": []
     },
     {
@@ -231,15 +245,15 @@
       "id": "I_kwDOMpG-ts6j_ejf",
       "title": "Terminology",
       "url": "https://github.com/martinduke/udp-ecn/issues/15",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "martinduke",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "From this [thread ](https://mailarchive.ietf.org/arch/msg/tsvwg/EDoWsI92tTLYjoFJ7ihI40Yt_FA/)\r\n\r\n\"ECN Mark\" => \"ECN Codepoint\" or \"CE mark\", depending on context\r\n\r\n\"TOS byte\" => \"legacy TOS byte\"",
       "createdAt": "2024-12-19T20:14:03Z",
-      "updatedAt": "2024-12-19T20:18:15Z",
-      "closedAt": null,
+      "updatedAt": "2024-12-23T21:41:44Z",
+      "closedAt": "2024-12-23T21:41:44Z",
       "comments": [
         {
           "author": "martinduke",
@@ -453,24 +467,26 @@
       "id": "PR_kwDOMpG-ts6F2S7G",
       "title": "Editorial comments during adoption",
       "url": "https://github.com/martinduke/udp-ecn/pull/16",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "martinduke",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "Fixes #14\r\nFixes #15 ",
       "createdAt": "2024-12-19T22:00:57Z",
-      "updatedAt": "2024-12-19T22:16:09Z",
+      "updatedAt": "2024-12-23T21:41:43Z",
       "baseRepository": "martinduke/udp-ecn",
       "baseRefName": "main",
       "baseRefOid": "2fe34e29ca89af05c562ca3626dfd0725935deec",
       "headRepository": "martinduke/udp-ecn",
       "headRefName": "editorial",
       "headRefOid": "38f1d8c294f29c8768a01ef0812fff9df9012046",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-12-23T21:41:43Z",
+      "mergedAt": "2024-12-23T21:41:43Z",
+      "mergedBy": "martinduke",
+      "mergeCommit": {
+        "oid": "7c1e093369acbc2dee79edcf77a4cdc0b686ad4b"
+      },
       "comments": [],
       "reviews": []
     },
@@ -479,26 +495,83 @@
       "id": "PR_kwDOMpG-ts6F8UUn",
       "title": "Update Windows related details",
       "url": "https://github.com/martinduke/udp-ecn/pull/17",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "guhetier",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "- Fix a typo\r\n- Add link to MSDN documentation for the IP_RECVECN documentation.\r\n- Clarify that ECN cannot be sent on a per-socket basis on Windows currently, only per-packet.",
       "createdAt": "2024-12-20T18:37:05Z",
-      "updatedAt": "2024-12-20T18:37:05Z",
+      "updatedAt": "2024-12-23T21:40:07Z",
       "baseRepository": "martinduke/udp-ecn",
       "baseRefName": "main",
       "baseRefOid": "2fe34e29ca89af05c562ca3626dfd0725935deec",
       "headRepository": "guhetier/udp-ecn",
       "headRefName": "patch-1",
-      "headRefOid": "a86743067f63fb32affdf082ca7a055c12de86e5",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
-      "reviews": []
+      "headRefOid": "89528057f0b29a97325d98970a04283fe0b67b97",
+      "closedAt": "2024-12-23T21:40:07Z",
+      "mergedAt": "2024-12-23T21:40:07Z",
+      "mergedBy": "martinduke",
+      "mergeCommit": {
+        "oid": "2f7b9808bce4ce55eb1b203f54907699de31c9be"
+      },
+      "comments": [
+        {
+          "author": "martinduke",
+          "authorAssociation": "OWNER",
+          "body": "Fixes #11 ",
+          "createdAt": "2024-12-23T21:35:10Z",
+          "updatedAt": "2024-12-23T21:35:10Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOMpG-ts6WLYbI",
+          "commit": {
+            "abbreviatedOid": "a867430"
+          },
+          "author": "mxinden",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-12-22T07:42:29Z",
+          "updatedAt": "2024-12-22T07:49:30Z",
+          "comments": [
+            {
+              "originalPosition": 37,
+              "body": "```suggestion\r\nAt the time of this writing, Windows does not provide a way to configure a\r\n```",
+              "createdAt": "2024-12-22T07:42:29Z",
+              "updatedAt": "2024-12-22T07:49:30Z"
+            },
+            {
+              "originalPosition": 37,
+              "body": "```suggestion\r\nAt the time of this writting, Windows does not provide a way to configure\r\n```\r\n\r\nNot a native speaker. Please feel free to ignore.",
+              "createdAt": "2024-12-22T07:43:53Z",
+              "updatedAt": "2024-12-22T07:49:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMpG-ts6WMW2W",
+          "commit": {
+            "abbreviatedOid": "a867430"
+          },
+          "author": "guhetier",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-23T03:07:48Z",
+          "updatedAt": "2024-12-23T03:07:48Z",
+          "comments": [
+            {
+              "originalPosition": 37,
+              "body": "Not a native speaker easier :) I am on the fence about which version is the most correct, so I trust you on that one.",
+              "createdAt": "2024-12-23T03:07:48Z",
+              "updatedAt": "2024-12-23T03:07:48Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
