@@ -165,7 +165,7 @@ If the incoming packet is IPv4, Linux will include a cmsg of level IPPROTO_IP
 and type IP_TOS.
 
 If the incoming packet is IPv6, Linux will include a cmsg of level IPPROTO_IPV6
-and type IP_TCLASS.
+and type IPV6_TCLASS.
 
 The resulting report contains the entire IP header byte, which includes other
 fields. The ECN codepoint constitutes the two least-significant bits of this
