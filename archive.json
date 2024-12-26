@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-12-24T00:49:12.417843+00:00",
+  "timestamp": "2024-12-26T00:48:30.930113+00:00",
   "repo": "martinduke/udp-ecn",
   "labels": [
     {
@@ -142,7 +142,7 @@
       "labels": [],
       "body": "On recvmsg(), Linux reports IP_TOS. Apple reports IPV6_TCLASS.\r\n\r\nsendmsg() is probably the same.",
       "createdAt": "2024-11-05T16:44:23Z",
-      "updatedAt": "2024-12-23T21:39:00Z",
+      "updatedAt": "2024-12-24T18:56:03Z",
       "closedAt": null,
       "comments": [
         {
@@ -158,6 +158,13 @@
           "body": "Question for @guhetier",
           "createdAt": "2024-12-23T21:38:59Z",
           "updatedAt": "2024-12-23T21:38:59Z"
+        },
+        {
+          "author": "guhetier",
+          "authorAssociation": "COLLABORATOR",
+          "body": "On Windows, for datagrams received on IPv4 received on a dual stack socket, you should get IP_PROTO_IP + IP_ECN.\r\n(and for datagrams received on IPv6, you get IP_PROTO_IPV6 + IPV6_ECN).\r\n\r\nBut I want to confirm that's the behavior even when the socket is configured with both IP_RECVECN and IPV6_RECVECN, the example I have in mind set only one or the other.",
+          "createdAt": "2024-12-24T18:56:02Z",
+          "updatedAt": "2024-12-24T18:56:02Z"
         }
       ]
     },
@@ -194,7 +201,7 @@
       "comments": [
         {
           "author": "guhetier",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "Hi,\r\n\r\nWindows doesn't have a sockopt for sending ECN on UDP at this time.\r\nECN can only be set on a per-packet basis using a cmsg (as already described in the document).\r\n\r\nI created #17 to add clarify it + add a link to the IP_RECVECN online documentation.",
           "createdAt": "2024-12-20T18:38:24Z",
           "updatedAt": "2024-12-20T18:38:24Z"
@@ -497,12 +504,12 @@
       "url": "https://github.com/martinduke/udp-ecn/pull/17",
       "state": "MERGED",
       "author": "guhetier",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "- Fix a typo\r\n- Add link to MSDN documentation for the IP_RECVECN documentation.\r\n- Clarify that ECN cannot be sent on a per-socket basis on Windows currently, only per-packet.",
       "createdAt": "2024-12-20T18:37:05Z",
-      "updatedAt": "2024-12-23T21:40:07Z",
+      "updatedAt": "2024-12-24T18:08:59Z",
       "baseRepository": "martinduke/udp-ecn",
       "baseRefName": "main",
       "baseRefOid": "2fe34e29ca89af05c562ca3626dfd0725935deec",
@@ -557,7 +564,7 @@
             "abbreviatedOid": "a867430"
           },
           "author": "guhetier",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-12-23T03:07:48Z",
