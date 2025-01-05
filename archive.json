@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-02T00:48:29.639906+00:00",
+  "timestamp": "2025-01-05T00:53:58.343890+00:00",
   "repo": "martinduke/udp-ecn",
   "labels": [
     {
@@ -142,7 +142,7 @@
       "labels": [],
       "body": "On recvmsg(), Linux reports IP_TOS. Apple reports IPV6_TCLASS.\r\n\r\nsendmsg() is probably the same.",
       "createdAt": "2024-11-05T16:44:23Z",
-      "updatedAt": "2024-12-24T18:56:03Z",
+      "updatedAt": "2025-01-04T00:47:39Z",
       "closedAt": null,
       "comments": [
         {
@@ -165,6 +165,13 @@
           "body": "On Windows, for datagrams received on IPv4 received on a dual stack socket, you should get IP_PROTO_IP + IP_ECN.\r\n(and for datagrams received on IPv6, you get IP_PROTO_IPV6 + IPV6_ECN).\r\n\r\nBut I want to confirm that's the behavior even when the socket is configured with both IP_RECVECN and IPV6_RECVECN, the example I have in mind set only one or the other.",
           "createdAt": "2024-12-24T18:56:02Z",
           "updatedAt": "2024-12-24T18:56:02Z"
+        },
+        {
+          "author": "guhetier",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I checked, and I confirm what I said earlier.\r\nFor a dual-stack socket on Windows:\r\n- If IPPROTO_IP / IP_RECVECN is set, when a IPv4 packet is received, a cmsg with level IPPROTO_IP and type IP_ECN is reported.\r\n- If IPPROTO_IPV6 / IPV6_RECVECN is set, when a IPv6 packet is received, a cmsg with level IPPROTO_IPV6 and type IPV6_ECN is reported\r\n- If either one is not set, no cmsg is reported for the packet of the corresponding IP type\r\n\r\nTo get the ECN flag for all packets received on a dual stack socket, one should set both options and check for cmsg of both types. \r\n\r\n",
+          "createdAt": "2025-01-04T00:47:38Z",
+          "updatedAt": "2025-01-04T00:47:38Z"
         }
       ]
     },
