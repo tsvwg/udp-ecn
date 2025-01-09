@@ -4,8 +4,8 @@
 
 Transport and Services Working Group                             M. Duke
 Internet-Draft                                                    Google
-Intended status: Informational                          24 December 2024
-Expires: 27 June 2025
+Intended status: Informational                            9 January 2025
+Expires: 13 July 2025
 
 
           Configuring UDP Sockets for ECN for Common Platforms
@@ -53,11 +53,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 27 June 2025.
+   This Internet-Draft will expire on 13 July 2025.
 
 Copyright Notice
 
-   Copyright (c) 2024 IETF Trust and the persons identified as the
+   Copyright (c) 2025 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -125,9 +125,11 @@ Table of Contents
    QUIC on the many platforms on which Chromium is deployed revealed
    that many ECN-related UDP socket interfaces are poorly documented.
 
-   This document provides a record of that experience, to encourage
-   further support for ECN in other QUIC implementations, and indeed any
-   consumer of ECN codepoints that operates over UDP.
+   This informational document provides a record of that experience, to
+   encourage further support for ECN in other QUIC implementations, and
+   indeed any consumer of ECN codepoints that operates over UDP.  It is
+   not a standards-track document and does not bind platforms to any
+   API, or suggest any such API.
 
 2.  Conventions and Definitions
 
@@ -312,7 +314,7 @@ Table of Contents
    packets.
 
    Windows uses a cmsg with level IPPROTO_IPV6 and type IPV6_ECN for
-   IPv6 packets.ee
+   IPv6 packets.
 
    An example of the technique described above can be found at
    [CHROMIUM-WINDOWS].
