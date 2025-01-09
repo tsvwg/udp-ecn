@@ -81,9 +81,10 @@ that includes QUIC. An effort to provide ECN support for QUIC on the many
 platforms on which Chromium is deployed revealed that many ECN-related UDP
 socket interfaces are poorly documented.
 
-This document provides a record of that experience, to encourage further support
-for ECN in other QUIC implementations, and indeed any consumer of ECN codepoints
-that operates over UDP.
+This informational document provides a record of that experience, to encourage
+further support for ECN in other QUIC implementations, and indeed any consumer
+of ECN codepoints that operates over UDP. It is not a standards-track document
+and does not bind platforms to any API, or suggest any such API.
 
 
 # Conventions and Definitions
@@ -254,7 +255,7 @@ The same applies to the Linux-specific sendmmsg() call.
 
 Windows uses a cmsg with level IPPROTO_IP and type IP_ECN for IPv4 packets.
 
-Windows uses a cmsg with level IPPROTO_IPV6 and type IPV6_ECN for IPv6 packets.ee
+Windows uses a cmsg with level IPPROTO_IPV6 and type IPV6_ECN for IPv6 packets.
 
 An example of the technique described above can be found at
 {{CHROMIUM-WINDOWS}}.
