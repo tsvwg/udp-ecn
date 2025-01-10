@@ -226,7 +226,7 @@ generally want to preserve any existing DSCP setting, which might require a
 getsockopt() call.
 
 For dual-stack sockets, Linux requires an additional setsockopt() call with
-IP_TOS. Apple sockets do not and will return an error if this call is made. 
+IP_TOS. Apple sockets do not and will return an error if this call is made.
 
 An example of the technique described above can be found at {{CHROMIUM-POSIX}}.
 
