@@ -225,10 +225,8 @@ bits that make up the rest of the header byte. Applications making this call wil
 generally want to preserve any existing DSCP setting, which might require a
 getsockopt() call.
 
-For dual-stack sockets, we hypothesize that Linux sockets will require an
-additional setsockopt() call with IP_TOS. Apple sockets will not and will
-return an error if this call is made. Our experiments did not test this
-hypothesis.
+For dual-stack sockets, Linux requires an additional setsockopt() call with
+IP_TOS. Apple sockets do not and will return an error if this call is made. 
 
 An example of the technique described above can be found at {{CHROMIUM-POSIX}}.
 
