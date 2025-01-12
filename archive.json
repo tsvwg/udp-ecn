@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-09T00:49:27.011844+00:00",
+  "timestamp": "2025-01-12T00:54:36.889919+00:00",
   "repo": "martinduke/udp-ecn",
   "labels": [
     {
@@ -135,15 +135,15 @@
       "id": "I_kwDOMpG-ts6dHa8_",
       "title": "Talk about cmsg for IPv4 packets on dual-stack sockets",
       "url": "https://github.com/martinduke/udp-ecn/issues/9",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "martinduke",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "On recvmsg(), Linux reports IP_TOS. Apple reports IPV6_TCLASS.\r\n\r\nsendmsg() is probably the same.",
       "createdAt": "2024-11-05T16:44:23Z",
-      "updatedAt": "2025-01-04T00:47:39Z",
-      "closedAt": null,
+      "updatedAt": "2025-01-09T21:23:59Z",
+      "closedAt": "2025-01-09T21:23:59Z",
       "comments": [
         {
           "author": "martinduke",
@@ -172,6 +172,13 @@
           "body": "I checked, and I confirm what I said earlier.\r\nFor a dual-stack socket on Windows:\r\n- If IPPROTO_IP / IP_RECVECN is set, when a IPv4 packet is received, a cmsg with level IPPROTO_IP and type IP_ECN is reported.\r\n- If IPPROTO_IPV6 / IPV6_RECVECN is set, when a IPv6 packet is received, a cmsg with level IPPROTO_IPV6 and type IPV6_ECN is reported\r\n- If either one is not set, no cmsg is reported for the packet of the corresponding IP type\r\n\r\nTo get the ECN flag for all packets received on a dual stack socket, one should set both options and check for cmsg of both types. \r\n\r\n",
           "createdAt": "2025-01-04T00:47:38Z",
           "updatedAt": "2025-01-04T00:47:38Z"
+        },
+        {
+          "author": "martinduke",
+          "authorAssociation": "OWNER",
+          "body": "Weirdly, this what's already in the draft, so I'm not sure why I filed the issue. Nevertheless, thanks for confirming.",
+          "createdAt": "2025-01-09T21:23:59Z",
+          "updatedAt": "2025-01-09T21:23:59Z"
         }
       ]
     },
@@ -275,6 +282,30 @@
           "body": "From Greg White:\r\n\r\n> On terminology, I noticed the statement in Section 3: \u201cNetwork devices can change the ECN bits in the IP header.\u201d\r\n> \r\n> This should be \u201cNetwork devices can change the ECN codepoint in the IP header.\u201d and it would be worth pointing to RFC3168 and RFC9331 regarding the allowed transitions that are expected to occur.\r\n> \r\n> I\u2019ve noticed that even some current vendor documentation refers to the obsolete RFC2481 definition of the \u201cECT bit\u201d and the \u201cCE bit\u201d as opposed to the \u201cECN Field\u201d and its codepoints.",
           "createdAt": "2024-12-19T20:18:05Z",
           "updatedAt": "2024-12-19T20:18:15Z"
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "id": "I_kwDOMpG-ts6lpTgs",
+      "title": "Verify sendmsg behavior",
+      "url": "https://github.com/martinduke/udp-ecn/issues/18",
+      "state": "OPEN",
+      "author": "martinduke",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Section 4.1.1\r\n\r\nFor dual-stack sockets, we hypothesize that Linux sockets will require an additional setsockopt() call with IP_TOS. Apple sockets will not and will return an error if this call is made. Our experiments did not test this hypothesis.\r\n\r\n",
+      "createdAt": "2025-01-10T01:23:46Z",
+      "updatedAt": "2025-01-10T14:58:04Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "martinduke",
+          "authorAssociation": "OWNER",
+          "body": "Confirmed for linux",
+          "createdAt": "2025-01-10T14:58:03Z",
+          "updatedAt": "2025-01-10T14:58:03Z"
         }
       ]
     }
@@ -586,6 +617,32 @@
           ]
         }
       ]
+    },
+    {
+      "number": 19,
+      "id": "PR_kwDOMpG-ts6HW0kE",
+      "title": "Confirm sendmsg behavior",
+      "url": "https://github.com/martinduke/udp-ecn/pull/19",
+      "state": "OPEN",
+      "author": "martinduke",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes #18 ",
+      "createdAt": "2025-01-10T16:49:46Z",
+      "updatedAt": "2025-01-10T16:55:02Z",
+      "baseRepository": "martinduke/udp-ecn",
+      "baseRefName": "main",
+      "baseRefOid": "e22b858231edb64f7aa26e2abe9ba014af7dd8c9",
+      "headRepository": "martinduke/udp-ecn",
+      "headRefName": "sendmsg",
+      "headRefOid": "0f5850b45ea02948ba1fd8baf2bf902a7a369f50",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
