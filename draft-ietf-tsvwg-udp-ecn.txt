@@ -4,8 +4,8 @@
 
 Transport and Services Working Group                             M. Duke
 Internet-Draft                                                    Google
-Intended status: Informational                            9 January 2025
-Expires: 13 July 2025
+Intended status: Informational                             13 March 2025
+Expires: 14 September 2025
 
 
           Configuring UDP Sockets for ECN for Common Platforms
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 July 2025.
+   This Internet-Draft will expire on 14 September 2025.
 
 Copyright Notice
 
@@ -280,10 +280,9 @@ Table of Contents
    Applications making this call will generally want to preserve any
    existing DSCP setting, which might require a getsockopt() call.
 
-   For dual-stack sockets, we hypothesize that Linux sockets will
-   require an additional setsockopt() call with IP_TOS.  Apple sockets
-   will not and will return an error if this call is made.  Our
-   experiments did not test this hypothesis.
+   For dual-stack sockets, Linux requires an additional setsockopt()
+   call with IP_TOS.  Apple sockets do not and will return an error if
+   this call is made.
 
    An example of the technique described above can be found at
    [CHROMIUM-POSIX].
