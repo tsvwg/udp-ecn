@@ -4,8 +4,8 @@
 
 Transport and Services Working Group                             M. Duke
 Internet-Draft                                                    Google
-Intended status: Informational                             13 March 2025
-Expires: 14 September 2025
+Intended status: Informational                             14 March 2025
+Expires: 15 September 2025
 
 
           Configuring UDP Sockets for ECN for Common Platforms
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 September 2025.
+   This Internet-Draft will expire on 15 September 2025.
 
 Copyright Notice
 
@@ -130,6 +130,11 @@ Table of Contents
    indeed any consumer of ECN codepoints that operates over UDP.  It is
    not a standards-track document and does not bind platforms to any
    API, or suggest any such API.
+
+   Many socket APIs continue to reference the "ToS (Type of Service)
+   byte" even though [RFC2474] obsoleted that 25 years ago.  That 8-bit
+   field now contains a 6-bit Differentiated Services Code Point (DSCP),
+   in addition to the ECN bits.
 
 2.  Conventions and Definitions
 
@@ -399,6 +404,12 @@ Table of Contents
               (L4S) Internet Service: Architecture", RFC 9330,
               DOI 10.17487/RFC9330, January 2023,
               <https://www.rfc-editor.org/info/rfc9330>.
+
+   [RFC2474]  Nichols, K., Blake, S., Baker, F., and D. Black,
+              "Definition of the Differentiated Services Field (DS
+              Field) in the IPv4 and IPv6 Headers", RFC 2474,
+              DOI 10.17487/RFC2474, December 1998,
+              <https://www.rfc-editor.org/info/rfc2474>.
 
 Acknowledgments
 
