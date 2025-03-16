@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-30T00:46:33.406604+00:00",
+  "timestamp": "2025-03-16T00:56:10.993471+00:00",
   "repo": "tsvwg/udp-ecn",
   "labels": [
     {
@@ -194,7 +194,7 @@
       "labels": [],
       "body": "Some platforms require a uint32, some require a uint8. It also depends on the kernel version. Happy to provide some more details on what I did in quic-go, if there is interest in expanding this document.",
       "createdAt": "2024-11-08T09:53:37Z",
-      "updatedAt": "2025-01-24T06:45:10Z",
+      "updatedAt": "2025-03-13T20:39:06Z",
       "closedAt": null,
       "comments": [
         {
@@ -217,6 +217,27 @@
           "body": "Isn't it doing an implicit type conversion there? https://elixir.bootlin.com/linux/v3.10.77/source/include/net/inet_sock.h#L172\n\n> I also find it surprising that MacOS would be different from BSD, as one is derived from the other and this is a weird thing to change on purpose.\n\nIndeed, would probably make sense to double-check this, but we made this change based on an issue reported by a FreeBSD user: https://github.com/quic-go/quic-go/issues/4106.\n\n> Also, in host order it doesn't really matter; TOS is one byte, which will be in the first byte even if it's a 4B int, so if the code assumes it's 1B (or even assumes it's 4B and applies the 0x3 bitmask) it doesn't matter.\n\nYes, that fact has been very unhelpful in debugging this issue. You're totally right that *if* this is the only cmsg you're using, the kernel just seems to ignore the additional 3 bytes. However, once you add another cmsg, it suddenly does matter, and you'll get some nasty `sendmsg: invalid argument` errors.\n\n> Based on this reasoning, the fact we're not sure, I don't think it matters much to implementers, and I'm inclined to just not discuss this in the draft at all.\n\nFor me, getting the cmsg size right turned out to be the most painful part, and was the reason for more than one patch release...",
           "createdAt": "2025-01-24T06:45:09Z",
           "updatedAt": "2025-01-24T06:45:09Z"
+        },
+        {
+          "author": "martinduke",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Yes, that fact has been very unhelpful in debugging this issue. You're totally right that if this is the only cmsg you're using, the kernel just seems to ignore the additional 3 bytes. However, once you add another cmsg, it suddenly does matter, and you'll get some nasty sendmsg: invalid argument errors.\n\nWas there a reason you didn't just use CMSG_NXT?",
+          "createdAt": "2025-02-06T19:30:46Z",
+          "updatedAt": "2025-02-06T19:30:46Z"
+        },
+        {
+          "author": "marten-seemann",
+          "authorAssociation": "NONE",
+          "body": "Not sure what that is (Google returns 0 results).",
+          "createdAt": "2025-02-06T22:23:23Z",
+          "updatedAt": "2025-02-06T22:23:23Z"
+        },
+        {
+          "author": "martinduke",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Sorry, CMSG_NXTHDR.",
+          "createdAt": "2025-03-13T20:39:05Z",
+          "updatedAt": "2025-03-13T20:39:05Z"
         }
       ]
     },
@@ -312,15 +333,15 @@
       "id": "I_kwDOMpG-ts6lpTgs",
       "title": "Verify sendmsg behavior",
       "url": "https://github.com/tsvwg/udp-ecn/issues/18",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "martinduke",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Section 4.1.1\r\n\r\nFor dual-stack sockets, we hypothesize that Linux sockets will require an additional setsockopt() call with IP_TOS. Apple sockets will not and will return an error if this call is made. Our experiments did not test this hypothesis.\r\n\r\n",
       "createdAt": "2025-01-10T01:23:46Z",
-      "updatedAt": "2025-01-10T14:58:04Z",
-      "closedAt": null,
+      "updatedAt": "2025-03-13T15:36:53Z",
+      "closedAt": "2025-03-13T15:36:53Z",
       "comments": [
         {
           "author": "martinduke",
@@ -330,6 +351,22 @@
           "updatedAt": "2025-01-10T14:58:03Z"
         }
       ]
+    },
+    {
+      "number": 20,
+      "id": "I_kwDOMpG-ts6t5wu4",
+      "title": "References to ToS byte",
+      "url": "https://github.com/tsvwg/udp-ecn/issues/20",
+      "state": "CLOSED",
+      "author": "martinduke",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Gorry's email:\n\ndraft-ietf-tsvwg-udp-ecn talks about the ToS bytem, because stack document still does.\n\nhowever, it's sad that the \"ToS-Byte\" of the 1980's still exists in stack code, even though the ToS field and former IPP fields have been deprecated. If and when the IETF decides to publish this I-D, I think it would be really nice to try to say this and explain that this byte is now the 6-bit Diffserv field and the 2-bit ECN field. RFC2474 contains this redefintion (and RFC 9435 describes some of the issues that arise when people think this is one field).",
+      "createdAt": "2025-03-13T15:37:49Z",
+      "updatedAt": "2025-03-14T16:24:51Z",
+      "closedAt": "2025-03-14T16:24:51Z",
+      "comments": []
     }
   ],
   "pulls": [
@@ -645,26 +682,70 @@
       "id": "PR_kwDOMpG-ts6HW0kE",
       "title": "Confirm sendmsg behavior",
       "url": "https://github.com/tsvwg/udp-ecn/pull/19",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "martinduke",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Fixes #18 ",
       "createdAt": "2025-01-10T16:49:46Z",
-      "updatedAt": "2025-01-10T16:55:02Z",
+      "updatedAt": "2025-03-13T15:36:52Z",
       "baseRepository": "tsvwg/udp-ecn",
       "baseRefName": "main",
       "baseRefOid": "e22b858231edb64f7aa26e2abe9ba014af7dd8c9",
       "headRepository": "tsvwg/udp-ecn",
       "headRefName": "sendmsg",
       "headRefOid": "0f5850b45ea02948ba1fd8baf2bf902a7a369f50",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-03-13T15:36:52Z",
+      "mergedAt": "2025-03-13T15:36:52Z",
+      "mergedBy": "martinduke",
+      "mergeCommit": {
+        "oid": "bb659feaec2a9508e535dc4d0893cac96b23deea"
+      },
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 21,
+      "id": "PR_kwDOMpG-ts6Ok5fv",
+      "title": "Mention TOS is obsolete",
+      "url": "https://github.com/tsvwg/udp-ecn/pull/21",
+      "state": "MERGED",
+      "author": "martinduke",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes #20 ",
+      "createdAt": "2025-03-13T21:03:27Z",
+      "updatedAt": "2025-03-14T16:24:50Z",
+      "baseRepository": "tsvwg/udp-ecn",
+      "baseRefName": "main",
+      "baseRefOid": "54faf5f465b677d3c983428c4882de5fc8a72b57",
+      "headRepository": "tsvwg/udp-ecn",
+      "headRefName": "tos-byte",
+      "headRefOid": "69abbe93a4238ec780a2900c6f1b1e5092c89bb0",
+      "closedAt": "2025-03-14T16:24:50Z",
+      "mergedAt": "2025-03-14T16:24:50Z",
+      "mergedBy": "martinduke",
+      "mergeCommit": {
+        "oid": "c4dd6bd95c60fafe3e4087c736b71a0be33c8906"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOMpG-ts6f90xp",
+          "commit": {
+            "abbreviatedOid": "69abbe9"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-03-14T01:45:32Z",
+          "updatedAt": "2025-03-14T01:45:32Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
