@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-16T00:56:10.993471+00:00",
+  "timestamp": "2025-03-18T00:52:15.696039+00:00",
   "repo": "tsvwg/udp-ecn",
   "labels": [
     {
@@ -366,6 +366,38 @@
       "createdAt": "2025-03-13T15:37:49Z",
       "updatedAt": "2025-03-14T16:24:51Z",
       "closedAt": "2025-03-14T16:24:51Z",
+      "comments": []
+    },
+    {
+      "number": 22,
+      "id": "I_kwDOMpG-ts6uRzH4",
+      "title": "Any desire to talk about things like the Java VM?",
+      "url": "https://github.com/tsvwg/udp-ecn/issues/22",
+      "state": "OPEN",
+      "author": "JonathanLennox",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Is there any desire to talk about higher-level API abstractions like the Java VM?\n\nWith Java, I believe you you can set ECN on a per-socket basis with the setsockopt methods corresponding to the platform you're on, but as far as I can tell there's no way to receive them.\n\n(I have a bug report filed with OpenJDK about this but as far as I can tell there's been no progress on it.  Partially this issue here is just because I'm grumpy about that fact.)",
+      "createdAt": "2025-03-17T06:26:57Z",
+      "updatedAt": "2025-03-17T06:26:57Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 23,
+      "id": "I_kwDOMpG-ts6uR1uf",
+      "title": "Windows added RECVECN support fairly recently",
+      "url": "https://github.com/tsvwg/udp-ecn/issues/23",
+      "state": "OPEN",
+      "author": "JonathanLennox",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "It's a bit hard to find, but the Microsoft documentation for WSASetRecvIPEcn at https://learn.microsoft.com/en-us/windows/win32/api/ws2tcpip/nf-ws2tcpip-wsasetrecvipecn says it's supported since Windows 10 Build 20348, which I believe is when the corresponding socket options were added too, so it might be worth noting that.  \n\n\n",
+      "createdAt": "2025-03-17T06:32:27Z",
+      "updatedAt": "2025-03-17T06:32:27Z",
+      "closedAt": null,
       "comments": []
     }
   ],
