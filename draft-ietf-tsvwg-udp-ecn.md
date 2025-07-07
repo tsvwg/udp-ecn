@@ -174,10 +174,10 @@ and {{CHROMIUM-WINDOWS}}.
 ### Linux
 
 If the incoming packet is IPv4, Linux will include a cmsg of level IPPROTO_IP
-and type IP_TOS.
+and type IP_TOS. The cmsg data contains an unsigned char.
 
 If the incoming packet is IPv6, Linux will include a cmsg of level IPPROTO_IPV6
-and type IPV6_TCLASS.
+and type IPV6_TCLASS. The cmsg data contains an int.
 
 The resulting report contains the entire IP header byte, which includes other
 fields. The ECN codepoint constitutes the two least-significant bits of this
@@ -188,8 +188,8 @@ The same applies to the Linux-specific recvmmsg() call.
 ### Apple and FreeBSD
 
 If a UDP message (UDP/IPv4) is received on an IPv4 socket, the ancillary data
-will contain a cmsg of level IPPROTO_IP and type IP_RECVTOS.
-The cmsg data contains an unsigned char.
+will contain a cmsg of level IPPROTO_IP and type IP_RECVTOS. The cmsg data
+contains an unsigned char.
 
 If a UDP message (UDP/IPv6 or UDP/IPv4) is received on an IPv6 socket, the
 ancillary data will contain a cmsg of level IPPROTO_IPV6 and type IPV6_TCLASS.
@@ -202,10 +202,10 @@ byte.
 ### Windows
 
 If the incoming packet is IPv4, the socket will include a cmsg of level
-IPPROTO_IP and type IP_ECN.
+IPPROTO_IP and type IP_ECN. The cmsg data contains an int.
 
 If the incoming packet is IPv6, the socket will include a cmsg of level
-IPPROTO_IPV6 and type IPV6_ECN.
+IPPROTO_IPV6 and type IPV6_ECN. The cmsg data contains an int.
 
 The resulting integer solely consists of the ECN codepoint, and requires no
 further bitwise operations.
