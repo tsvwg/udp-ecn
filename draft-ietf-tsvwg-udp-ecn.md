@@ -17,8 +17,8 @@ venue:
   type: "Working Group"
   mail: "tsvwg@ietf.org"
   arch: "https://mailarchive.ietf.org/arch/browse/tsvwg/"
-  github: "martinduke/udp-ecn"
-  latest: "https://martinduke.github.io/udp-ecn/draft-duke-tsvwg-udp-ecn.html"
+  github: "tsvwg/udp-ecn"
+  latest: "https://tsvwg.github.io/udp-ecn/draft-ietf-tsvwg-udp-ecn.html"
 
 author:
  -
