@@ -430,8 +430,8 @@ Acknowledgments
    responsibility for any errors above.
 
    Neal Cardwell, Gorry Fairhurst, Max Franke, Rodney Grimes, Will
-   Hawkins, Guillaume Hétier, Max Inden, Colin Perkins, and Michael
-   Tuexen made improvements to this draft.
+   Hawkins, Guillaume Hétier, Max Inden, Jonathan Lennox, Colin Perkins,
+   Marten Seemann, and Michael Tuexen made improvements to this draft.
 
 Author's Address
 
