@@ -39,6 +39,10 @@ informative:
    title: "udp_socket_win.cc"
    target: "https://source.chromium.org/chromium/chromium/src/+/main:net/socket/udp_socket_win.cc"
 
+ WINDOWS-DOC:
+   title: "WSASetRecvIPEcn function (ws2tcpip.h)"
+   target: "https://learn.microsoft.com/en-us/windows/win32/api/ws2tcpip/nf-ws2tcpip-wsasetrecvipecn"
+
  WINDOWS-SOCKOPT:
    title: "MSDN - IPPROTO_IP socket options"
    target: "https://learn.microsoft.com/en-us/windows/win32/winsock/ipproto-ip-socket-options"
@@ -131,7 +135,8 @@ At the time of writing, an example implementation can be found at
 ### Windows
 
 Windows documentation recommends using the function WSASetRecvIPEcn() to
-enable ECN reporting regardless of the IP version.
+enable ECN reporting regardless of the IP version. This function dates to
+Windows 10 Build 20348, according to {{WINDOWS-DOC}}.
 
 However, this can also be accomplished by calling setsockopt() and using
 options of level IPPROTO_IP and name IP_RECVECN for IPv4, and IPPROTO_IPV6
