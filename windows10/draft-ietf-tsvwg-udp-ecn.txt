@@ -4,8 +4,8 @@
 
 Transport and Services Working Group                             M. Duke
 Internet-Draft                                                    Google
-Intended status: Informational                             13 March 2025
-Expires: 14 September 2025
+Intended status: Informational                               7 July 2025
+Expires: 8 January 2026
 
 
           Configuring UDP Sockets for ECN for Common Platforms
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 September 2025.
+   This Internet-Draft will expire on 8 January 2026.
 
 Copyright Notice
 
@@ -131,11 +131,6 @@ Table of Contents
    not a standards-track document and does not bind platforms to any
    API, or suggest any such API.
 
-   Many socket APIs continue to reference the "ToS (Type of Service)
-   byte" even though [RFC2474] obsoleted that 25 years ago.  That 8-bit
-   field now contains a 6-bit Differentiated Services Code Point (DSCP),
-   in addition to the ECN bits.
-
 2.  Conventions and Definitions
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
@@ -187,7 +182,8 @@ Table of Contents
 3.1.2.  Windows
 
    Windows documentation recommends using the function WSASetRecvIPEcn()
-   to enable ECN reporting regardless of the IP version.
+   to enable ECN reporting regardless of the IP version.  This function
+   dates to Windows 10 Build 20348, according to [WINDOWS-DOC].
 
    However, this can also be accomplished by calling setsockopt() and
    using options of level IPPROTO_IP and name IP_RECVECN for IPv4, and
@@ -366,6 +362,12 @@ Table of Contents
               <https://source.chromium.org/chromium/chromium/
               src/+/main:net/socket/udp_socket_win.cc>.
 
+   [WINDOWS-DOC]
+              "WSASetRecvIPEcn function (ws2tcpip.h)", n.d.,
+              <https://learn.microsoft.com/en-
+              us/windows/win32/api/ws2tcpip/nf-ws2tcpip-
+              wsasetrecvipecn>.
+
    [WINDOWS-SOCKOPT]
               "MSDN - IPPROTO_IP socket options", n.d.,
               <https://learn.microsoft.com/en-us/windows/win32/winsock/
@@ -404,12 +406,6 @@ Table of Contents
               (L4S) Internet Service: Architecture", RFC 9330,
               DOI 10.17487/RFC9330, January 2023,
               <https://www.rfc-editor.org/info/rfc9330>.
-
-   [RFC2474]  Nichols, K., Blake, S., Baker, F., and D. Black,
-              "Definition of the Differentiated Services Field (DS
-              Field) in the IPv4 and IPv6 Headers", RFC 2474,
-              DOI 10.17487/RFC2474, December 1998,
-              <https://www.rfc-editor.org/info/rfc2474>.
 
 Acknowledgments
 
