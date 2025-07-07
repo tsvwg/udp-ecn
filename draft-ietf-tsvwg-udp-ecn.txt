@@ -26,7 +26,7 @@ About This Document
    This note is to be removed before publishing as an RFC.
 
    The latest revision of this draft can be found at
-   https://martinduke.github.io/udp-ecn/draft-duke-tsvwg-udp-ecn.html.
+   https://tsvwg.github.io/udp-ecn/draft-ietf-tsvwg-udp-ecn.html.
    Status information for this document may be found at
    https://datatracker.ietf.org/doc/draft-ietf-tsvwg-udp-ecn/.
 
@@ -36,7 +36,7 @@ About This Document
    Subscribe at https://www.ietf.org/mailman/listinfo/tsvwg/.
 
    Source for this draft and an issue tracker can be found at
-   https://github.com/martinduke/udp-ecn.
+   https://github.com/tsvwg/udp-ecn.
 
 Status of This Memo
 
