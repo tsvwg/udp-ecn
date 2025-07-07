@@ -225,10 +225,10 @@ Table of Contents
 3.2.1.  Linux
 
    If the incoming packet is IPv4, Linux will include a cmsg of level
-   IPPROTO_IP and type IP_TOS.
+   IPPROTO_IP and type IP_TOS.  The cmsg data contains an unsigned char.
 
    If the incoming packet is IPv6, Linux will include a cmsg of level
-   IPPROTO_IPV6 and type IPV6_TCLASS.
+   IPPROTO_IPV6 and type IPV6_TCLASS.  The cmsg data contains an int.
 
    The resulting report contains the entire IP header byte, which
    includes other fields.  The ECN codepoint constitutes the two least-
@@ -253,10 +253,10 @@ Table of Contents
 3.2.3.  Windows
 
    If the incoming packet is IPv4, the socket will include a cmsg of
-   level IPPROTO_IP and type IP_ECN.
+   level IPPROTO_IP and type IP_ECN.  The cmsg data contains an int.
 
    If the incoming packet is IPv6, the socket will include a cmsg of
-   level IPPROTO_IPV6 and type IPV6_ECN.
+   level IPPROTO_IPV6 and type IPV6_ECN.  The cmsg data contains an int.
 
    The resulting integer solely consists of the ECN codepoint, and
    requires no further bitwise operations.

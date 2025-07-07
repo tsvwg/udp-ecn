@@ -1375,9 +1375,9 @@ and <span>[<a href="#CHROMIUM-WINDOWS" class="cite xref">CHROMIUM-WINDOWS</a>]</
 <a href="#section-3.2.1" class="section-number selfRef">3.2.1. </a><a href="#name-linux" class="section-name selfRef">Linux</a>
           </h4>
 <p id="section-3.2.1-1">If the incoming packet is IPv4, Linux will include a cmsg of level IPPROTO_IP
-and type IP_TOS.<a href="#section-3.2.1-1" class="pilcrow">¶</a></p>
+and type IP_TOS. The cmsg data contains an unsigned char.<a href="#section-3.2.1-1" class="pilcrow">¶</a></p>
 <p id="section-3.2.1-2">If the incoming packet is IPv6, Linux will include a cmsg of level IPPROTO_IPV6
-and type IPV6_TCLASS.<a href="#section-3.2.1-2" class="pilcrow">¶</a></p>
+and type IPV6_TCLASS. The cmsg data contains an int.<a href="#section-3.2.1-2" class="pilcrow">¶</a></p>
 <p id="section-3.2.1-3">The resulting report contains the entire IP header byte, which includes other
 fields. The ECN codepoint constitutes the two least-significant bits of this
 byte.<a href="#section-3.2.1-3" class="pilcrow">¶</a></p>
@@ -1390,8 +1390,8 @@ byte.<a href="#section-3.2.1-3" class="pilcrow">¶</a></p>
 <a href="#section-3.2.2" class="section-number selfRef">3.2.2. </a><a href="#name-apple-and-freebsd" class="section-name selfRef">Apple and FreeBSD</a>
           </h4>
 <p id="section-3.2.2-1">If a UDP message (UDP/IPv4) is received on an IPv4 socket, the ancillary data
-will contain a cmsg of level IPPROTO_IP and type IP_RECVTOS.
-The cmsg data contains an unsigned char.<a href="#section-3.2.2-1" class="pilcrow">¶</a></p>
+will contain a cmsg of level IPPROTO_IP and type IP_RECVTOS. The cmsg data
+contains an unsigned char.<a href="#section-3.2.2-1" class="pilcrow">¶</a></p>
 <p id="section-3.2.2-2">If a UDP message (UDP/IPv6 or UDP/IPv4) is received on an IPv6 socket, the
 ancillary data will contain a cmsg of level IPPROTO_IPV6 and type IPV6_TCLASS.
 The cmsg data contains an int.<a href="#section-3.2.2-2" class="pilcrow">¶</a></p>
@@ -1406,9 +1406,9 @@ byte.<a href="#section-3.2.2-3" class="pilcrow">¶</a></p>
 <a href="#section-3.2.3" class="section-number selfRef">3.2.3. </a><a href="#name-windows-2" class="section-name selfRef">Windows</a>
           </h4>
 <p id="section-3.2.3-1">If the incoming packet is IPv4, the socket will include a cmsg of level
-IPPROTO_IP and type IP_ECN.<a href="#section-3.2.3-1" class="pilcrow">¶</a></p>
+IPPROTO_IP and type IP_ECN. The cmsg data contains an int.<a href="#section-3.2.3-1" class="pilcrow">¶</a></p>
 <p id="section-3.2.3-2">If the incoming packet is IPv6, the socket will include a cmsg of level
-IPPROTO_IPV6 and type IPV6_ECN.<a href="#section-3.2.3-2" class="pilcrow">¶</a></p>
+IPPROTO_IPV6 and type IPV6_ECN. The cmsg data contains an int.<a href="#section-3.2.3-2" class="pilcrow">¶</a></p>
 <p id="section-3.2.3-3">The resulting integer solely consists of the ECN codepoint, and requires no
 further bitwise operations.<a href="#section-3.2.3-3" class="pilcrow">¶</a></p>
 </section>
