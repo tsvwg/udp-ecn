@@ -295,5 +295,5 @@ provided useful hints about the behavior of their respective operating systems.
 However, the author takes full responsibility for any errors above.
 
 Neal Cardwell, Gorry Fairhurst, Max Franke, Rodney Grimes, Will Hawkins,
-Guillaume H&eacute;tier, Max Inden, Colin Perkins, and Michael Tuexen made
-improvements to this draft.
+Guillaume H&eacute;tier, Max Inden, Jonathan Lennox, Colin Perkins, Marten
+Seemann, and Michael Tuexen made improvements to this draft.
