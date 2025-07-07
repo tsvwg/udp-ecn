@@ -136,6 +136,9 @@ Table of Contents
    field now contains a 6-bit Differentiated Services Code Point (DSCP),
    in addition to the ECN bits.
 
+   This document focuses on the APIs for the C and C++ languages.  Other
+   languages are likely to have different syntax and capabilities.
+
 2.  Conventions and Definitions
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
