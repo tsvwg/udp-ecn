@@ -94,6 +94,9 @@ Many socket APIs continue to reference the "ToS (Type of Service) byte" even
 though {{?RFC2474}} obsoleted that 25 years ago. That 8-bit field now contains a
 6-bit Differentiated Services Code Point (DSCP), in addition to the ECN bits.
 
+This document focuses on the APIs for the C and C++ languages. Other languages
+are likely to have different syntax and capabilities.
+
 # Conventions and Definitions
 
 {::boilerplate bcp14-tagged}
