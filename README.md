@@ -4,15 +4,15 @@ This is the working area for individual Internet-Drafts.
 
 ## Configuring UDP Sockets for ECN for Common Platforms
 
-* [Editor's Copy](https://martinduke.github.io/udp-ecn/#go.draft-duke-tsvwg-udp-ecn.html)
+* [Editor's Copy](https://tsvwg.github.io/udp-ecn/#go.draft-ietf-tsvwg-udp-ecn.html)
 * [Datatracker Page](https://datatracker.ietf.org/doc/draft-ietf-tsvwg-udp-ecn)
 * [WG Draft](https://datatracker.ietf.org/doc/html/draft-ietf-tsvwg-udp-ecn)
-* [Compare Editor's Copy to Individual Draft](https://martinduke.github.io/udp-ecn/#go.draft-ietf-tsvwg-udp-ecn.diff)
+* [Compare Editor's Copy to Individual Draft](https://tsvwg.github.io/udp-ecn/#go.draft-ietf-tsvwg-udp-ecn.diff)
 
 ## Contributing
 
 See the
-[guidelines for contributions](https://github.com/martinduke/udp-ecn/blob/main/CONTRIBUTING.md).
+[guidelines for contributions](https://github.com/tsvwg/udp-ecn/blob/main/CONTRIBUTING.md).
 
 Contributions can be made by creating pull requests.
 The GitHub interface supports creating pull requests using the Edit (✏) button.
