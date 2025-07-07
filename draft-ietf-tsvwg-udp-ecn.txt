@@ -4,8 +4,8 @@
 
 Transport and Services Working Group                             M. Duke
 Internet-Draft                                                    Google
-Intended status: Informational                             14 March 2025
-Expires: 15 September 2025
+Intended status: Informational                               7 July 2025
+Expires: 8 January 2026
 
 
           Configuring UDP Sockets for ECN for Common Platforms
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 September 2025.
+   This Internet-Draft will expire on 8 January 2026.
 
 Copyright Notice
 
@@ -187,7 +187,8 @@ Table of Contents
 3.1.2.  Windows
 
    Windows documentation recommends using the function WSASetRecvIPEcn()
-   to enable ECN reporting regardless of the IP version.
+   to enable ECN reporting regardless of the IP version.  This function
+   dates to Windows 10 Build 20348, according to [WINDOWS-DOC].
 
    However, this can also be accomplished by calling setsockopt() and
    using options of level IPPROTO_IP and name IP_RECVECN for IPv4, and
@@ -365,6 +366,12 @@ Table of Contents
               "udp_socket_win.cc", n.d.,
               <https://source.chromium.org/chromium/chromium/
               src/+/main:net/socket/udp_socket_win.cc>.
+
+   [WINDOWS-DOC]
+              "WSASetRecvIPEcn function (ws2tcpip.h)", n.d.,
+              <https://learn.microsoft.com/en-
+              us/windows/win32/api/ws2tcpip/nf-ws2tcpip-
+              wsasetrecvipecn>.
 
    [WINDOWS-SOCKOPT]
               "MSDN - IPPROTO_IP socket options", n.d.,
