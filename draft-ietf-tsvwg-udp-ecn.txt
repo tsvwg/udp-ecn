@@ -4,8 +4,8 @@
 
 Transport and Services Working Group                             M. Duke
 Internet-Draft                                                    Google
-Intended status: Informational                               7 July 2025
-Expires: 8 January 2026
+Intended status: Informational                               8 July 2025
+Expires: 9 January 2026
 
 
           Configuring UDP Sockets for ECN for Common Platforms
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 January 2026.
+   This Internet-Draft will expire on 9 January 2026.
 
 Copyright Notice
 
@@ -98,12 +98,12 @@ Table of Contents
 
 1.  Introduction
 
-   [RFC3168] reserves two bits in the IP header for Explicit Congestion
-   Notification (ECN), which provides network feedback to endpoint
-   congestion controllers.  This has historically mostly been relevant
-   to TCP ([RFC9293]), where any incoming ECN codepoints are internally
-   consumed by the kernel, and therefore imply no application interface
-   except enabling and disabling the capability.
+   [RFC3168] defines a two-bit field in the IP header for Explicit
+   Congestion Notification (ECN), which provides network feedback to
+   endpoint congestion controllers.  This has historically mostly been
+   relevant to TCP ([RFC9293]), where any incoming ECN codepoints are
+   internally consumed by the kernel, and therefore imply no application
+   interface except enabling and disabling the capability.
 
    The Stream Control Transport Protocol (SCTP) ([RFC9260]) has long
    supported ECN in its design.  SCTP is sometimes carried over DTLS and
@@ -134,7 +134,7 @@ Table of Contents
    Many socket APIs continue to reference the "ToS (Type of Service)
    byte" even though [RFC2474] obsoleted that 25 years ago.  That 8-bit
    field now contains a 6-bit Differentiated Services Code Point (DSCP),
-   in addition to the ECN bits.
+   in addition to the 2-bit ECN field.
 
    This document focuses on the APIs for the C and C++ languages.  Other
    languages are likely to have different syntax and capabilities.
