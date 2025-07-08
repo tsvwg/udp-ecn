@@ -431,7 +431,8 @@ Acknowledgments
 
    Neal Cardwell, Gorry Fairhurst, Max Franke, Rodney Grimes, Will
    Hawkins, Guillaume Hétier, Max Inden, Jonathan Lennox, Colin Perkins,
-   Marten Seemann, and Michael Tuexen made improvements to this draft.
+   Marten Seemann, Michael Tuexen, and Greg White made improvements to
+   this draft.
 
 Author's Address
 
