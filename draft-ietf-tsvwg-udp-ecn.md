@@ -60,7 +60,7 @@ Windows platforms.
 
 # Introduction
 
-{{?RFC3168}} reserves two bits in the IP header for Explicit Congestion
+{{?RFC3168}} defines a two-bit field in the IP header for Explicit Congestion
 Notification (ECN), which provides network feedback to endpoint congestion
 controllers. This has historically mostly been relevant to TCP ({{?RFC9293}}),
 where any incoming ECN codepoints are internally consumed by the kernel, and
@@ -92,7 +92,7 @@ and does not bind platforms to any API, or suggest any such API.
 
 Many socket APIs continue to reference the "ToS (Type of Service) byte" even
 though {{?RFC2474}} obsoleted that 25 years ago. That 8-bit field now contains a
-6-bit Differentiated Services Code Point (DSCP), in addition to the ECN bits.
+6-bit Differentiated Services Code Point (DSCP), in addition to the 2-bit ECN field.
 
 This document focuses on the APIs for the C and C++ languages. Other languages
 are likely to have different syntax and capabilities.
