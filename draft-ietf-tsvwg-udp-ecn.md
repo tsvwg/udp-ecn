@@ -90,9 +90,10 @@ further support for ECN in other QUIC implementations, and indeed any consumer
 of ECN codepoints that operates over UDP. It is not a standards-track document
 and does not bind platforms to any API, or suggest any such API.
 
-Many socket APIs continue to reference the "ToS (Type of Service) byte" even
-though {{?RFC2474}} obsoleted that 25 years ago. That 8-bit field now contains a
-6-bit Differentiated Services Code Point (DSCP), in addition to the 2-bit ECN field.
+Many socket APIs continue to reference the "ToS (Type of Service) byte",
+including the IP_TOS label, even though {{?RFC2474}} obsoleted that 25 years
+ago. That 8-bit field now contains a 6-bit Differentiated Services Code Point
+(DSCP), in addition to the 2-bit ECN field.
 
 This document focuses on the APIs for the C and C++ languages. Other languages
 are likely to have different syntax and capabilities.
