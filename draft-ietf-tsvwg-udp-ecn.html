@@ -1169,7 +1169,7 @@ Windows platforms.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
                 <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-setting-the-socket-to-repor" class="internal xref">Setting the socket to report incoming ECN codepoints</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.1">
-                    <p id="section-toc.1-1.3.2.1.2.1.1" class="keepWithNext"><a href="#section-3.1.1" class="auto internal xref">3.1.1</a>.  <a href="#name-linux-apple-and-freebsd" class="internal xref">Linux, Apple and FreeBSD</a></p>
+                    <p id="section-toc.1-1.3.2.1.2.1.1" class="keepWithNext"><a href="#section-3.1.1" class="auto internal xref">3.1.1</a>.  <a href="#name-linux-apple-and-freebsd" class="internal xref">Linux, Apple, and FreeBSD</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.2">
                     <p id="section-toc.1-1.3.2.1.2.2.1"><a href="#section-3.1.2" class="auto internal xref">3.1.2</a>.  <a href="#name-windows" class="internal xref">Windows</a></p>
@@ -1213,7 +1213,7 @@ Windows platforms.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
                     <p id="section-toc.1-1.4.2.2.2.1.1"><a href="#section-4.2.1" class="auto internal xref">4.2.1</a>.  <a href="#name-linux-and-apple-2" class="internal xref">Linux and Apple</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.2">
-                    <p id="section-toc.1-1.4.2.2.2.2.1"><a href="#section-4.2.2" class="auto internal xref">4.2.2</a>.  <a href="#name-microsoft" class="internal xref">Microsoft</a></p>
+                    <p id="section-toc.1-1.4.2.2.2.2.1"><a href="#section-4.2.2" class="auto internal xref">4.2.2</a>.  <a href="#name-windows-4" class="internal xref">Windows</a></p>
 </li>
                 </ul>
 </li>
@@ -1295,6 +1295,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <p id="section-2-2">This document is not a general tutorial on UDP socket programming, and assumes
 familiarity with basic socket concepts like binding, socket options, and
 common system error codes.<a href="#section-2-2" class="pilcrow">¶</a></p>
+<p id="section-2-3">Througout this document, "Apple" refers to both MacOS and iOS.<a href="#section-2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="receiving-ecn-codepoints">
@@ -1315,7 +1316,7 @@ marks, and retrieving the value for each incoming packet.<a href="#section-3-2" 
 <div id="linux-apple-and-freebsd">
 <section id="section-3.1.1">
           <h4 id="name-linux-apple-and-freebsd">
-<a href="#section-3.1.1" class="section-number selfRef">3.1.1. </a><a href="#name-linux-apple-and-freebsd" class="section-name selfRef">Linux, Apple and FreeBSD</a>
+<a href="#section-3.1.1" class="section-number selfRef">3.1.1. </a><a href="#name-linux-apple-and-freebsd" class="section-name selfRef">Linux, Apple, and FreeBSD</a>
           </h4>
 <p id="section-3.1.1-1">To report ECN, applications set a socket option to true using a setsockopt()
 call.<a href="#section-3.1.1-1" class="pilcrow">¶</a></p>
@@ -1482,10 +1483,10 @@ destination is an IPv4 address, or a IPv4-mapped IPv6 address.<a href="#section-
 <p id="section-4.2.1-3">The same applies to the Linux-specific sendmmsg() call.<a href="#section-4.2.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="microsoft">
+<div id="windows-3">
 <section id="section-4.2.2">
-          <h4 id="name-microsoft">
-<a href="#section-4.2.2" class="section-number selfRef">4.2.2. </a><a href="#name-microsoft" class="section-name selfRef">Microsoft</a>
+          <h4 id="name-windows-4">
+<a href="#section-4.2.2" class="section-number selfRef">4.2.2. </a><a href="#name-windows-4" class="section-name selfRef">Windows</a>
           </h4>
 <p id="section-4.2.2-1">Windows uses a cmsg with level IPPROTO_IP and type IP_ECN for IPv4 packets.<a href="#section-4.2.2-1" class="pilcrow">¶</a></p>
 <p id="section-4.2.2-2">Windows uses a cmsg with level IPPROTO_IPV6 and type IPV6_ECN for IPv6 packets.<a href="#section-4.2.2-2" class="pilcrow">¶</a></p>
