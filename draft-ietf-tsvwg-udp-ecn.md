@@ -27,6 +27,10 @@ author:
     email: martin.h.duke@gmail.com
 
 informative:
+ APPLE-NETWORK-FRAMEWORK:
+  title: "NWProtocolIP.Metadata"
+  target: "https://developer.apple.com/documentation/network/nwprotocolip/metadata"
+
  CHROMIUM:
    title: "The Chromium Projects"
    target: "https://www.chromium.org/chromium-projects/"
@@ -113,6 +117,12 @@ this codepoint from the UDP socket in order to report to the sender.
 
 There are two components to this: setting the socket to report incoming ECN
 marks, and retrieving the value for each incoming packet.
+
+Note that Apple platforms additionally provide a framework for network
+connections that allows sending and receiving ECN flags when using UDP without
+traditional socket option semantics. When sending or receiving UDP datagrams, IP
+protocol metadata carries ECN information in both directions. See
+{{APPLE-NETWORK-FRAMEWORK}}.
 
 ## Setting the socket to report incoming ECN codepoints
 
@@ -221,6 +231,12 @@ to configure a consistent marking is generally more resource-efficient.
 However, some server designs receive all incoming packets on a single socket.
 As the many connections that constitute this packet stream may have different
 support for ECN, it is suitable to configure outgoing ECN on a per-packet basis.
+
+Note that Apple platforms additionally provide a framework for network
+connections that allows sending and receiving ECN flags when using UDP without
+traditional socket option semantics. When sending or receiving UDP datagrams, IP
+protocol metadata carries ECN information in both directions. See
+{{APPLE-NETWORK-FRAMEWORK}}.
 
 ## On a per-socket basis
 
