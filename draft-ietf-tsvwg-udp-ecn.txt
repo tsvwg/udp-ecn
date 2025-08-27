@@ -4,8 +4,8 @@
 
 Transport and Services Working Group                             M. Duke
 Internet-Draft                                                    Google
-Intended status: Informational                               8 July 2025
-Expires: 9 January 2026
+Intended status: Informational                            27 August 2025
+Expires: 28 February 2026
 
 
           Configuring UDP Sockets for ECN for Common Platforms
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 January 2026.
+   This Internet-Draft will expire on 28 February 2026.
 
 Copyright Notice
 
@@ -132,9 +132,10 @@ Table of Contents
    API, or suggest any such API.
 
    Many socket APIs continue to reference the "ToS (Type of Service)
-   byte" even though [RFC2474] obsoleted that 25 years ago.  That 8-bit
-   field now contains a 6-bit Differentiated Services Code Point (DSCP),
-   in addition to the 2-bit ECN field.
+   byte", including the IP_TOS label, even though [RFC2474] obsoleted
+   that 25 years ago.  That 8-bit field now contains a 6-bit
+   Differentiated Services Code Point (DSCP), in addition to the 2-bit
+   ECN field.
 
    This document focuses on the APIs for the C and C++ languages.  Other
    languages are likely to have different syntax and capabilities.
