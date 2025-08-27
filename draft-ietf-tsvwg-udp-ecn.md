@@ -105,6 +105,8 @@ This document is not a general tutorial on UDP socket programming, and assumes
 familiarity with basic socket concepts like binding, socket options, and
 common system error codes.
 
+Througout this document, "Apple" refers to both MacOS and iOS.
+
 # Receiving ECN codepoints
 
 Network devices can change the ECN codepoint in the IP header. Since this
@@ -116,7 +118,7 @@ marks, and retrieving the value for each incoming packet.
 
 ## Setting the socket to report incoming ECN codepoints
 
-### Linux, Apple and FreeBSD
+### Linux, Apple, and FreeBSD
 
 To report ECN, applications set a socket option to true using a setsockopt()
 call.
@@ -260,7 +262,7 @@ Otherwise, they expect a cmsg with level IPPROTO_IPV6 and type IPV6_TCLASS.
 
 The same applies to the Linux-specific sendmmsg() call.
 
-### Microsoft
+### Windows
 
 Windows uses a cmsg with level IPPROTO_IP and type IP_ECN for IPv4 packets.
 
