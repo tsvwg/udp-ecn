@@ -165,6 +165,12 @@ Table of Contents
    incoming ECN marks, and retrieving the value for each incoming
    packet.
 
+   Note that Apple platforms additionally provide a framework for
+   network connections that allows sending and receiving ECN flags when
+   using UDP without traditional socket option semantics.  When sending
+   or receiving UDP datagrams, IP protocol metadata carries ECN
+   information in both directions.  See [APPLE-NETWORK-FRAMEWORK].
+
 3.1.  Setting the socket to report incoming ECN codepoints
 
 3.1.1.  Linux, Apple, and FreeBSD
@@ -278,6 +284,12 @@ Table of Contents
    may have different support for ECN, it is suitable to configure
    outgoing ECN on a per-packet basis.
 
+   Note that Apple platforms additionally provide a framework for
+   network connections that allows sending and receiving ECN flags when
+   using UDP without traditional socket option semantics.  When sending
+   or receiving UDP datagrams, IP protocol metadata carries ECN
+   information in both directions.  See [APPLE-NETWORK-FRAMEWORK].
+
 4.1.  On a per-socket basis
 
 4.1.1.  Linux and Apple
@@ -359,6 +371,11 @@ Table of Contents
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
 
 7.2.  Informative References
+
+   [APPLE-NETWORK-FRAMEWORK]
+              "NWProtocolIP.Metadata", n.d.,
+              <https://developer.apple.com/documentation/network/
+              nwprotocolip/metadata>.
 
    [CHROMIUM] "The Chromium Projects", n.d.,
               <https://www.chromium.org/chromium-projects/>.

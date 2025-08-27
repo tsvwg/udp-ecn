@@ -1308,6 +1308,11 @@ feedback is required at the packet sender, the packet receiver needs to extract
 this codepoint from the UDP socket in order to report to the sender.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <p id="section-3-2">There are two components to this: setting the socket to report incoming ECN
 marks, and retrieving the value for each incoming packet.<a href="#section-3-2" class="pilcrow">¶</a></p>
+<p id="section-3-3">Note that Apple platforms additionally provide a framework for network
+connections that allows sending and receiving ECN flags when using UDP without
+traditional socket option semantics. When sending or receiving UDP datagrams, IP
+protocol metadata carries ECN information in both directions. See
+<span>[<a href="#APPLE-NETWORK-FRAMEWORK" class="cite xref">APPLE-NETWORK-FRAMEWORK</a>]</span>.<a href="#section-3-3" class="pilcrow">¶</a></p>
 <div id="setting-the-socket-to-report-incoming-ecn-codepoints">
 <section id="section-3.1">
         <h3 id="name-setting-the-socket-to-repor">
@@ -1432,6 +1437,11 @@ to configure a consistent marking is generally more resource-efficient.<a href="
 <p id="section-4-2">However, some server designs receive all incoming packets on a single socket.
 As the many connections that constitute this packet stream may have different
 support for ECN, it is suitable to configure outgoing ECN on a per-packet basis.<a href="#section-4-2" class="pilcrow">¶</a></p>
+<p id="section-4-3">Note that Apple platforms additionally provide a framework for network
+connections that allows sending and receiving ECN flags when using UDP without
+traditional socket option semantics. When sending or receiving UDP datagrams, IP
+protocol metadata carries ECN information in both directions. See
+<span>[<a href="#APPLE-NETWORK-FRAMEWORK" class="cite xref">APPLE-NETWORK-FRAMEWORK</a>]</span>.<a href="#section-4-3" class="pilcrow">¶</a></p>
 <div id="on-a-per-socket-basis">
 <section id="section-4.1">
         <h3 id="name-on-a-per-socket-basis">
@@ -1547,6 +1557,10 @@ privacy implications. This document aims to mitigate that possibility.<a href="#
 <a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
+<dt id="APPLE-NETWORK-FRAMEWORK">[APPLE-NETWORK-FRAMEWORK]</dt>
+        <dd>
+<span class="refTitle">"NWProtocolIP.Metadata"</span>, <span>n.d.</span>, <span>&lt;<a href="https://developer.apple.com/documentation/network/nwprotocolip/metadata">https://developer.apple.com/documentation/network/nwprotocolip/metadata</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="CHROMIUM">[CHROMIUM]</dt>
         <dd>
 <span class="refTitle">"The Chromium Projects"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.chromium.org/chromium-projects/">https://www.chromium.org/chromium-projects/</a>&gt;</span>. </dd>
