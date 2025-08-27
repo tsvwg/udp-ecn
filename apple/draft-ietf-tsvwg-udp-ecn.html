@@ -14,12 +14,12 @@ platforms is sparse. This document records the results of experimenting with
 these APIs in order to get ECN working on UDP for Chromium on Apple, Linux, and
 Windows platforms. 
     " name="description">
-<meta content="xml2rfc 3.29.0" name="generator">
+<meta content="xml2rfc 3.30.0" name="generator">
 <meta content="udp" name="keyword">
 <meta content="ecn" name="keyword">
 <meta content="draft-ietf-tsvwg-udp-ecn-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.29.0
+  xml2rfc 3.30.0
     Python 3.12.11
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
@@ -1050,11 +1050,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">udp-ecn</td>
-<td class="right">July 2025</td>
+<td class="right">August 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Duke</td>
-<td class="center">Expires 8 January 2026</td>
+<td class="center">Expires 28 February 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1067,12 +1067,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-tsvwg-udp-ecn-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-07-07" class="published">7 July 2025</time>
+<time datetime="2025-08-27" class="published">27 August 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-01-08">8 January 2026</time></dd>
+<dd class="expires"><time datetime="2026-02-28">28 February 2026</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1098,7 +1098,7 @@ Windows platforms.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
       </h2>
 <p id="section-note.1-1">This note is to be removed before publishing as an RFC.<a href="#section-note.1-1" class="pilcrow">¶</a></p>
 <p id="section-note.1-2">
-        The latest revision of this draft can be found at <span><a href="https://martinduke.github.io/udp-ecn/draft-duke-tsvwg-udp-ecn.html">https://martinduke.github.io/udp-ecn/draft-duke-tsvwg-udp-ecn.html</a></span>.
+        The latest revision of this draft can be found at <span><a href="https://tsvwg.github.io/udp-ecn/draft-ietf-tsvwg-udp-ecn.html">https://tsvwg.github.io/udp-ecn/draft-ietf-tsvwg-udp-ecn.html</a></span>.
         Status information for this document may be found at <span><a href="https://datatracker.ietf.org/doc/draft-ietf-tsvwg-udp-ecn/">https://datatracker.ietf.org/doc/draft-ietf-tsvwg-udp-ecn/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
 <p id="section-note.1-3">
         Discussion of this document takes place on the
@@ -1106,7 +1106,7 @@ Windows platforms.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
         which is archived at <span><a href="https://mailarchive.ietf.org/arch/browse/tsvwg/">https://mailarchive.ietf.org/arch/browse/tsvwg/</a></span>.
         Subscribe at <span><a href="https://www.ietf.org/mailman/listinfo/tsvwg/">https://www.ietf.org/mailman/listinfo/tsvwg/</a></span>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
 <p id="section-note.1-4">Source for this draft and an issue tracker can be found at
-        <span><a href="https://github.com/martinduke/udp-ecn">https://github.com/martinduke/udp-ecn</a></span>.<a href="#section-note.1-4" class="pilcrow">¶</a></p>
+        <span><a href="https://github.com/tsvwg/udp-ecn">https://github.com/tsvwg/udp-ecn</a></span>.<a href="#section-note.1-4" class="pilcrow">¶</a></p>
 </section>
 <div id="status-of-memo">
 <section id="section-boilerplate.1">
@@ -1127,7 +1127,7 @@ Windows platforms.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 8 January 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 28 February 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1251,7 +1251,7 @@ Windows platforms.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1"><span>[<a href="#RFC3168" class="cite xref">RFC3168</a>]</span> reserves two bits in the IP header for Explicit Congestion
+<p id="section-1-1"><span>[<a href="#RFC3168" class="cite xref">RFC3168</a>]</span> defines a two-bit field in the IP header for Explicit Congestion
 Notification (ECN), which provides network feedback to endpoint congestion
 controllers. This has historically mostly been relevant to TCP (<span>[<a href="#RFC9293" class="cite xref">RFC9293</a>]</span>),
 where any incoming ECN codepoints are internally consumed by the kernel, and
@@ -1277,7 +1277,7 @@ of ECN codepoints that operates over UDP. It is not a standards-track document
 and does not bind platforms to any API, or suggest any such API.<a href="#section-1-6" class="pilcrow">¶</a></p>
 <p id="section-1-7">Many socket APIs continue to reference the "ToS (Type of Service) byte" even
 though <span>[<a href="#RFC2474" class="cite xref">RFC2474</a>]</span> obsoleted that 25 years ago. That 8-bit field now contains a
-6-bit Differentiated Services Code Point (DSCP), in addition to the ECN bits.<a href="#section-1-7" class="pilcrow">¶</a></p>
+6-bit Differentiated Services Code Point (DSCP), in addition to the 2-bit ECN field.<a href="#section-1-7" class="pilcrow">¶</a></p>
 <p id="section-1-8">This document focuses on the APIs for the C and C++ languages. Other languages
 are likely to have different syntax and capabilities.<a href="#section-1-8" class="pilcrow">¶</a></p>
 </section>
@@ -1306,6 +1306,11 @@ feedback is required at the packet sender, the packet receiver needs to extract
 this codepoint from the UDP socket in order to report to the sender.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <p id="section-3-2">There are two components to this: setting the socket to report incoming ECN
 marks, and retrieving the value for each incoming packet.<a href="#section-3-2" class="pilcrow">¶</a></p>
+<p id="section-3-3">Note that Apple platforms additionally provide a framework for network
+connections that allows sending and receiving ECN flags when using UDP without
+traditional socket option semantics. When sending or receiving UDP datagrams, IP
+protocol metadata carries ECN information in both directions. See
+<span>[<a href="#APPLE-NETWORK-FRAMEWORK" class="cite xref">APPLE-NETWORK-FRAMEWORK</a>]</span>.<a href="#section-3-3" class="pilcrow">¶</a></p>
 <div id="setting-the-socket-to-report-incoming-ecn-codepoints">
 <section id="section-3.1">
         <h3 id="name-setting-the-socket-to-repor">
@@ -1375,9 +1380,9 @@ and <span>[<a href="#CHROMIUM-WINDOWS" class="cite xref">CHROMIUM-WINDOWS</a>]</
 <a href="#section-3.2.1" class="section-number selfRef">3.2.1. </a><a href="#name-linux" class="section-name selfRef">Linux</a>
           </h4>
 <p id="section-3.2.1-1">If the incoming packet is IPv4, Linux will include a cmsg of level IPPROTO_IP
-and type IP_TOS.<a href="#section-3.2.1-1" class="pilcrow">¶</a></p>
+and type IP_TOS. The cmsg data contains an unsigned char.<a href="#section-3.2.1-1" class="pilcrow">¶</a></p>
 <p id="section-3.2.1-2">If the incoming packet is IPv6, Linux will include a cmsg of level IPPROTO_IPV6
-and type IPV6_TCLASS.<a href="#section-3.2.1-2" class="pilcrow">¶</a></p>
+and type IPV6_TCLASS. The cmsg data contains an int.<a href="#section-3.2.1-2" class="pilcrow">¶</a></p>
 <p id="section-3.2.1-3">The resulting report contains the entire IP header byte, which includes other
 fields. The ECN codepoint constitutes the two least-significant bits of this
 byte.<a href="#section-3.2.1-3" class="pilcrow">¶</a></p>
@@ -1390,8 +1395,8 @@ byte.<a href="#section-3.2.1-3" class="pilcrow">¶</a></p>
 <a href="#section-3.2.2" class="section-number selfRef">3.2.2. </a><a href="#name-apple-and-freebsd" class="section-name selfRef">Apple and FreeBSD</a>
           </h4>
 <p id="section-3.2.2-1">If a UDP message (UDP/IPv4) is received on an IPv4 socket, the ancillary data
-will contain a cmsg of level IPPROTO_IP and type IP_RECVTOS.
-The cmsg data contains an unsigned char.<a href="#section-3.2.2-1" class="pilcrow">¶</a></p>
+will contain a cmsg of level IPPROTO_IP and type IP_RECVTOS. The cmsg data
+contains an unsigned char.<a href="#section-3.2.2-1" class="pilcrow">¶</a></p>
 <p id="section-3.2.2-2">If a UDP message (UDP/IPv6 or UDP/IPv4) is received on an IPv6 socket, the
 ancillary data will contain a cmsg of level IPPROTO_IPV6 and type IPV6_TCLASS.
 The cmsg data contains an int.<a href="#section-3.2.2-2" class="pilcrow">¶</a></p>
@@ -1406,9 +1411,9 @@ byte.<a href="#section-3.2.2-3" class="pilcrow">¶</a></p>
 <a href="#section-3.2.3" class="section-number selfRef">3.2.3. </a><a href="#name-windows-2" class="section-name selfRef">Windows</a>
           </h4>
 <p id="section-3.2.3-1">If the incoming packet is IPv4, the socket will include a cmsg of level
-IPPROTO_IP and type IP_ECN.<a href="#section-3.2.3-1" class="pilcrow">¶</a></p>
+IPPROTO_IP and type IP_ECN. The cmsg data contains an int.<a href="#section-3.2.3-1" class="pilcrow">¶</a></p>
 <p id="section-3.2.3-2">If the incoming packet is IPv6, the socket will include a cmsg of level
-IPPROTO_IPV6 and type IPV6_ECN.<a href="#section-3.2.3-2" class="pilcrow">¶</a></p>
+IPPROTO_IPV6 and type IPV6_ECN. The cmsg data contains an int.<a href="#section-3.2.3-2" class="pilcrow">¶</a></p>
 <p id="section-3.2.3-3">The resulting integer solely consists of the ECN codepoint, and requires no
 further bitwise operations.<a href="#section-3.2.3-3" class="pilcrow">¶</a></p>
 </section>
@@ -1430,6 +1435,11 @@ to configure a consistent marking is generally more resource-efficient.<a href="
 <p id="section-4-2">However, some server designs receive all incoming packets on a single socket.
 As the many connections that constitute this packet stream may have different
 support for ECN, it is suitable to configure outgoing ECN on a per-packet basis.<a href="#section-4-2" class="pilcrow">¶</a></p>
+<p id="section-4-3">Note that Apple platforms additionally provide a framework for network
+connections that allows sending and receiving ECN flags when using UDP without
+traditional socket option semantics. When sending or receiving UDP datagrams, IP
+protocol metadata carries ECN information in both directions. See
+<span>[<a href="#APPLE-NETWORK-FRAMEWORK" class="cite xref">APPLE-NETWORK-FRAMEWORK</a>]</span>.<a href="#section-4-3" class="pilcrow">¶</a></p>
 <div id="on-a-per-socket-basis">
 <section id="section-4.1">
         <h3 id="name-on-a-per-socket-basis">
@@ -1545,6 +1555,10 @@ privacy implications. This document aims to mitigate that possibility.<a href="#
 <a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
+<dt id="APPLE-NETWORK-FRAMEWORK">[APPLE-NETWORK-FRAMEWORK]</dt>
+        <dd>
+<span class="refTitle">"NWProtocolIP.Metadata"</span>, <span>n.d.</span>, <span>&lt;<a href="https://developer.apple.com/documentation/network/nwprotocolip/metadata">https://developer.apple.com/documentation/network/nwprotocolip/metadata</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="CHROMIUM">[CHROMIUM]</dt>
         <dd>
 <span class="refTitle">"The Chromium Projects"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.chromium.org/chromium-projects/">https://www.chromium.org/chromium-projects/</a>&gt;</span>. </dd>
@@ -1612,8 +1626,8 @@ through this effort. Randall Meyer from Apple and Nick Grifka from Microsoft
 provided useful hints about the behavior of their respective operating systems.
 However, the author takes full responsibility for any errors above.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
 <p id="appendix-A-2">Neal Cardwell, Gorry Fairhurst, Max Franke, Rodney Grimes, Will Hawkins,
-Guillaume Hétier, Max Inden, Colin Perkins, and Michael Tuexen made
-improvements to this draft.<a href="#appendix-A-2" class="pilcrow">¶</a></p>
+Guillaume Hétier, Max Inden, Jonathan Lennox, Colin Perkins, Marten
+Seemann, Michael Tuexen, and Greg White made improvements to this draft.<a href="#appendix-A-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">

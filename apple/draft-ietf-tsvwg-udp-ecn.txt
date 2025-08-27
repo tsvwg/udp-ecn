@@ -4,8 +4,8 @@
 
 Transport and Services Working Group                             M. Duke
 Internet-Draft                                                    Google
-Intended status: Informational                               7 July 2025
-Expires: 8 January 2026
+Intended status: Informational                            27 August 2025
+Expires: 28 February 2026
 
 
           Configuring UDP Sockets for ECN for Common Platforms
@@ -26,7 +26,7 @@ About This Document
    This note is to be removed before publishing as an RFC.
 
    The latest revision of this draft can be found at
-   https://martinduke.github.io/udp-ecn/draft-duke-tsvwg-udp-ecn.html.
+   https://tsvwg.github.io/udp-ecn/draft-ietf-tsvwg-udp-ecn.html.
    Status information for this document may be found at
    https://datatracker.ietf.org/doc/draft-ietf-tsvwg-udp-ecn/.
 
@@ -36,7 +36,7 @@ About This Document
    Subscribe at https://www.ietf.org/mailman/listinfo/tsvwg/.
 
    Source for this draft and an issue tracker can be found at
-   https://github.com/martinduke/udp-ecn.
+   https://github.com/tsvwg/udp-ecn.
 
 Status of This Memo
 
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 January 2026.
+   This Internet-Draft will expire on 28 February 2026.
 
 Copyright Notice
 
@@ -98,12 +98,12 @@ Table of Contents
 
 1.  Introduction
 
-   [RFC3168] reserves two bits in the IP header for Explicit Congestion
-   Notification (ECN), which provides network feedback to endpoint
-   congestion controllers.  This has historically mostly been relevant
-   to TCP ([RFC9293]), where any incoming ECN codepoints are internally
-   consumed by the kernel, and therefore imply no application interface
-   except enabling and disabling the capability.
+   [RFC3168] defines a two-bit field in the IP header for Explicit
+   Congestion Notification (ECN), which provides network feedback to
+   endpoint congestion controllers.  This has historically mostly been
+   relevant to TCP ([RFC9293]), where any incoming ECN codepoints are
+   internally consumed by the kernel, and therefore imply no application
+   interface except enabling and disabling the capability.
 
    The Stream Control Transport Protocol (SCTP) ([RFC9260]) has long
    supported ECN in its design.  SCTP is sometimes carried over DTLS and
@@ -134,7 +134,7 @@ Table of Contents
    Many socket APIs continue to reference the "ToS (Type of Service)
    byte" even though [RFC2474] obsoleted that 25 years ago.  That 8-bit
    field now contains a 6-bit Differentiated Services Code Point (DSCP),
-   in addition to the ECN bits.
+   in addition to the 2-bit ECN field.
 
    This document focuses on the APIs for the C and C++ languages.  Other
    languages are likely to have different syntax and capabilities.
@@ -161,6 +161,12 @@ Table of Contents
    There are two components to this: setting the socket to report
    incoming ECN marks, and retrieving the value for each incoming
    packet.
+
+   Note that Apple platforms additionally provide a framework for
+   network connections that allows sending and receiving ECN flags when
+   using UDP without traditional socket option semantics.  When sending
+   or receiving UDP datagrams, IP protocol metadata carries ECN
+   information in both directions.  See [APPLE-NETWORK-FRAMEWORK].
 
 3.1.  Setting the socket to report incoming ECN codepoints
 
@@ -225,10 +231,10 @@ Table of Contents
 3.2.1.  Linux
 
    If the incoming packet is IPv4, Linux will include a cmsg of level
-   IPPROTO_IP and type IP_TOS.
+   IPPROTO_IP and type IP_TOS.  The cmsg data contains an unsigned char.
 
    If the incoming packet is IPv6, Linux will include a cmsg of level
-   IPPROTO_IPV6 and type IPV6_TCLASS.
+   IPPROTO_IPV6 and type IPV6_TCLASS.  The cmsg data contains an int.
 
    The resulting report contains the entire IP header byte, which
    includes other fields.  The ECN codepoint constitutes the two least-
@@ -253,10 +259,10 @@ Table of Contents
 3.2.3.  Windows
 
    If the incoming packet is IPv4, the socket will include a cmsg of
-   level IPPROTO_IP and type IP_ECN.
+   level IPPROTO_IP and type IP_ECN.  The cmsg data contains an int.
 
    If the incoming packet is IPv6, the socket will include a cmsg of
-   level IPPROTO_IPV6 and type IPV6_ECN.
+   level IPPROTO_IPV6 and type IPV6_ECN.  The cmsg data contains an int.
 
    The resulting integer solely consists of the ECN codepoint, and
    requires no further bitwise operations.
@@ -274,6 +280,12 @@ Table of Contents
    socket.  As the many connections that constitute this packet stream
    may have different support for ECN, it is suitable to configure
    outgoing ECN on a per-packet basis.
+
+   Note that Apple platforms additionally provide a framework for
+   network connections that allows sending and receiving ECN flags when
+   using UDP without traditional socket option semantics.  When sending
+   or receiving UDP datagrams, IP protocol metadata carries ECN
+   information in both directions.  See [APPLE-NETWORK-FRAMEWORK].
 
 4.1.  On a per-socket basis
 
@@ -357,6 +369,11 @@ Table of Contents
 
 7.2.  Informative References
 
+   [APPLE-NETWORK-FRAMEWORK]
+              "NWProtocolIP.Metadata", n.d.,
+              <https://developer.apple.com/documentation/network/
+              nwprotocolip/metadata>.
+
    [CHROMIUM] "The Chromium Projects", n.d.,
               <https://www.chromium.org/chromium-projects/>.
 
@@ -430,8 +447,9 @@ Acknowledgments
    responsibility for any errors above.
 
    Neal Cardwell, Gorry Fairhurst, Max Franke, Rodney Grimes, Will
-   Hawkins, Guillaume Hétier, Max Inden, Colin Perkins, and Michael
-   Tuexen made improvements to this draft.
+   Hawkins, Guillaume Hétier, Max Inden, Jonathan Lennox, Colin Perkins,
+   Marten Seemann, Michael Tuexen, and Greg White made improvements to
+   this draft.
 
 Author's Address
 
