@@ -74,11 +74,11 @@ capability.
 The Stream Control Transport Protocol (SCTP) ({{?RFC9260}}) has long supported
 ECN in its design. SCTP is sometimes carried over DTLS and UDP ({{?RFC8261}}).
 In principle, user-space implementers might have leveraged UDP ECN APIs to
-deliver ECN codepoints between SCTP and the UDP socket. The author is not aware
-of any such efforts.
+deliver ECN codepoints between SCTP and the UDP socket. At the time of
+publication, the TSV Working Group is not aware of any such efforts.
 
-{{?RFC6679}} defines ECN over RTP over UDP. The author is aware of a research
-implementation, but cannot confirm any commercial deployments.
+{{?RFC6679}} defines ECN over RTP over UDP. The Working Group is aware of a
+research implementation, but cannot confirm any commercial deployments.
 
 However, QUIC {{?RFC9000}} runs over UDP and has seen wider deployment than
 SCTP. The Low Latency, Low Loss, Scalable Throughput (L4S) experiment
@@ -110,7 +110,7 @@ This document is not a general tutorial on UDP socket programming, and assumes
 familiarity with basic socket concepts like binding, socket options, and
 common system error codes.
 
-Througout this document, "Apple" refers to both MacOS and iOS.
+Throughout this document, "Apple" refers to both MacOS and iOS.
 
 # Receiving ECN codepoints
 
