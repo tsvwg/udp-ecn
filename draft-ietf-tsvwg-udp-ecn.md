@@ -225,7 +225,7 @@ further bitwise operations.
 
 # Sending ECN codepoints
 
-Existing ECN specifications ({{RFC3168}}, {{RFC9390}}} envision a particular
+Existing ECN specifications ({{RFC3168}}, {{RFC9330}}} envision a particular
 connection consistently sending the same ECN codepoint. It might transition that
 marking after successfully completing a handshake, recognizing the path or the
 peer do not support ECN, or transitioning to a new path. Therefore, using a
