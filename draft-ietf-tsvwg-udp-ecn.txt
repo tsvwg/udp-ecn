@@ -4,8 +4,8 @@
 
 Transport and Services Working Group                             M. Duke
 Internet-Draft                                                    Google
-Intended status: Informational                            27 August 2025
-Expires: 28 February 2026
+Intended status: Informational                           20 October 2025
+Expires: 23 April 2026
 
 
           Configuring UDP Sockets for ECN for Common Platforms
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 28 February 2026.
+   This Internet-Draft will expire on 23 April 2026.
 
 Copyright Notice
 
@@ -109,10 +109,11 @@ Table of Contents
    supported ECN in its design.  SCTP is sometimes carried over DTLS and
    UDP ([RFC8261]).  In principle, user-space implementers might have
    leveraged UDP ECN APIs to deliver ECN codepoints between SCTP and the
-   UDP socket.  The author is not aware of any such efforts.
+   UDP socket.  At the time of publication, the TSV Working Group is not
+   aware of any such efforts.
 
-   [RFC6679] defines ECN over RTP over UDP.  The author is aware of a
-   research implementation, but cannot confirm any commercial
+   [RFC6679] defines ECN over RTP over UDP.  The Working Group is aware
+   of a research implementation, but cannot confirm any commercial
    deployments.
 
    However, QUIC [RFC9000] runs over UDP and has seen wider deployment
@@ -152,7 +153,7 @@ Table of Contents
    and assumes familiarity with basic socket concepts like binding,
    socket options, and common system error codes.
 
-   Througout this document, "Apple" refers to both MacOS and iOS.
+   Throughout this document, "Apple" refers to both MacOS and iOS.
 
 3.  Receiving ECN codepoints
 
