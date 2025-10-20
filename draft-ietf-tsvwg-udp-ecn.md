@@ -95,9 +95,9 @@ of ECN codepoints that operates over UDP. It is not a standards-track document
 and does not bind platforms to any API, or suggest any such API.
 
 Many socket APIs continue to reference the "ToS (Type of Service) byte",
-including the IP_TOS label, even though {{?RFC2474}} obsoleted that 25 years
-ago. That 8-bit field now contains a 6-bit Differentiated Services Code Point
-(DSCP), in addition to the 2-bit ECN field.
+including the IP_TOS label, even though {{?RFC2474}} obsoleted that in 1998.
+That 8-bit field now contains a 6-bit Differentiated Services Code Point (DSCP)
+and the 2-bit ECN field.
 
 This document focuses on the APIs for the C and C++ languages. Other languages
 are likely to have different syntax and capabilities.
@@ -119,12 +119,12 @@ feedback is required at the packet sender, the packet receiver needs to extract
 this codepoint from the UDP socket in order to report to the sender.
 
 There are two components to this: setting the socket to report incoming ECN
-marks, and retrieving the value for each incoming packet.
+marks, and retrieving the ECN codepoint for each incoming packet.
 
 Note that Apple platforms additionally provide a framework for network
-connections that allows sending and receiving ECN flags when using UDP without
-traditional socket option semantics. When sending or receiving UDP datagrams, IP
-protocol metadata carries ECN information in both directions. See
+connections that allows receiving ECN flags when using UDP without traditional
+socket option semantics. When sending or receiving UDP datagrams, IP protocol
+metadata carries ECN information in both directions. See
 {{APPLE-NETWORK-FRAMEWORK}}.
 
 ## Setting the socket to report incoming ECN codepoints
@@ -225,20 +225,21 @@ further bitwise operations.
 
 # Sending ECN codepoints
 
-Existing ECN specifications envision a particular connection consistently
-sending the same ECN codepoint. It might transition that marking after
-successfully completing a handshake, recognizing the path or the peer do not
-support ECN, or transitioning to a new path. Therefore, using a socket option
-to configure a consistent marking is generally more resource-efficient.
+Existing ECN specifications ({{RFC3168}}, {{RFC9390}}} envision a particular
+connection consistently sending the same ECN codepoint. It might transition that
+marking after successfully completing a handshake, recognizing the path or the
+peer do not support ECN, or transitioning to a new path. Therefore, using a
+socket option to configure a consistent marking is generally more resource-
+efficient.
 
 However, some server designs receive all incoming packets on a single socket.
 As the many connections that constitute this packet stream may have different
 support for ECN, it is suitable to configure outgoing ECN on a per-packet basis.
 
 Note that Apple platforms additionally provide a framework for network
-connections that allows sending and receiving ECN flags when using UDP without
-traditional socket option semantics. When sending or receiving UDP datagrams, IP
-protocol metadata carries ECN information in both directions. See
+connections that allows sending ECN flags when using UDP without traditional
+socket option semantics. When sending or receiving UDP datagrams, IP protocol
+metadata carries ECN information in both directions. See
 {{APPLE-NETWORK-FRAMEWORK}}.
 
 ## On a per-socket basis
