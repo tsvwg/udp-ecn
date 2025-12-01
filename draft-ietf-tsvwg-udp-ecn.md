@@ -67,14 +67,14 @@ Windows platforms.
 {{?RFC3168}} defines a two-bit field in the IP header for Explicit Congestion
 Notification (ECN), which provides network feedback to endpoint congestion
 controllers. This has historically mostly been relevant to TCP ({{?RFC9293}}),
-where any incoming ECN field are internally consumed by the kernel, and
+where any incoming ECN codepoints are internally consumed by the kernel, and
 therefore imply no application interface except enabling and disabling the
 capability.
 
 The Stream Control Transport Protocol (SCTP) ({{?RFC9260}}) has long supported
 ECN in its design. SCTP is sometimes carried over DTLS and UDP ({{?RFC8261}}).
 In principle, user-space implementers might have leveraged UDP ECN APIs to
-deliver ECN field between SCTP and the UDP socket. At the time of
+deliver ECN codepoints between SCTP and the UDP socket. At the time of
 publication, the TSV Working Group is not aware of any such efforts.
 
 {{?RFC6679}} defines ECN over RTP over UDP. The Working Group is aware of a
@@ -91,7 +91,7 @@ socket interfaces are poorly documented.
 
 This informational document provides a record of that experience, to encourage
 further support for ECN in other QUIC implementations, and indeed any consumer
-of ECN field that operates over UDP. It is not a standards-track document
+of ECN codepoints that operates over UDP. It is not a standards-track document
 and does not bind platforms to any API, or suggest any such API.
 
 Many socket APIs continue to reference the "ToS (Type of Service) byte",
@@ -110,26 +110,26 @@ common system error codes.
 
 Throughout this document, "Apple" refers to both macOS and iOS.
 
-# Receiving the ECN field
+# Receiving ECN codepoints
 
-Network devices can change the ECN field in the IP header. Since this
+Network devices can change the ECN codepoint in the IP header. Since this
 feedback is required at the packet sender, the packet receiver needs to extract
 this codepoint from the UDP socket in order to report to the sender.
 
 There are two components to this: setting the socket to report incoming ECN
-field, and retrieving the ECN field for each incoming packet.
+marks, and retrieving the ECN codepoint for each incoming packet.
 
 Note that Apple platforms additionally provide a framework for network
-connections that allows receiving the ECN field when using UDP without traditional
+connections that allows receiving ECN flags when using UDP without traditional
 socket option semantics. When sending or receiving UDP datagrams, IP protocol
 metadata carries ECN information in both directions. See
 {{APPLE-NETWORK-FRAMEWORK}}.
 
-## Setting the socket to report incoming ECN fields
+## Setting the socket to report incoming ECN codepoints
 
 ### Linux, Apple, and FreeBSD
 
-To receive the ECN field, applications set a socket option to true using a setsockopt()
+To receive ECN codepoints, applications set a socket option to true using a setsockopt()
 call.
 
 On all platforms, IPv4 sockets require the IPPROTO_IP-level socket option with
@@ -138,7 +138,7 @@ name IP_RECVTOS to be set.
 On all platforms, IPv6 sockets require the IPPROTO_IPV6-level socket option with
 name IPV6_RECVTCLASS to be set.
 If the IPv6 socket is not IPv6 only, on Linux hosts it is required to also set
-the IPPROTO_IP-level socket option IP_RECVTOS to receive the ECN field for
+the IPPROTO_IP-level socket option IP_RECVTOS to receive ECN codepoints for
 UDP/IPv4 packets.
 
 At the time of writing, an example implementation can be found at
@@ -147,7 +147,7 @@ At the time of writing, an example implementation can be found at
 ### Windows
 
 Windows documentation recommends using the function WSASetRecvIPEcn() to
-enable ECN field reporting regardless of the IP version. This function dates to
+enable ECN codepoint reporting regardless of the IP version. This function dates to
 Windows 10 Build 20348, according to {{WINDOWS-DOC}}.
 
 However, this can also be accomplished by calling setsockopt() and using
@@ -166,10 +166,10 @@ IP_RECVECN.
 At the time of writing, an example implementation can be found at
 {{CHROMIUM-WINDOWS}}.
 
-## Retrieving ECN fields on incoming packets
+## Retrieving ECN codepoints on incoming packets
 
 All platforms described in this document require the use of a recvmsg() call to
-read data from the socket to retrieve the ECN field, because that information
+read data from the socket to retrieve the ECN codepoint, because that information
 is provided as ancillary data.
 Those platforms all return zero or more "cmsg"s that contain requested information
 about the arriving packet.
@@ -188,8 +188,8 @@ and type IPV6_TCLASS. The cmsg data contains an int.
 This applies to IPv6 sockets.
 
 The cmsg data contains the entire IP header byte, which includes the DSCP
-and ECN field.
-The ECN field constitutes the two least-significant bits of this byte.
+and the ECN codepoint.
+The ECN codepoint constitutes the two least-significant bits of this byte.
 
 The same applies to the Linux-specific recvmmsg() call.
 
@@ -204,8 +204,8 @@ ancillary data will contain a cmsg of level IPPROTO_IPV6 and type IPV6_TCLASS.
 The cmsg data contains an int.
 
 The cmsg data contains the entire IP header byte, which includes the DSCP
-and ECN field.
-The ECN field constitutes the two least-significant bits of this byte.
+and the ECN codepoint.
+The ECN codepoint constitutes the two least-significant bits of this byte.
 
 ### Windows
 
@@ -215,13 +215,13 @@ IPPROTO_IP and type IP_ECN. The cmsg data contains an int.
 If the incoming packet is UDP/IPv6, the socket will include a cmsg of level
 IPPROTO_IPV6 and type IPV6_ECN. The cmsg data contains an int.
 
-The cmsg data solely consists of the ECN field, and requires no
+The cmsg data solely consists of the ECN codepoint, and requires no
 further bitwise operations.
 
 # Sending ECN codepoints
 
 Existing ECN specifications ({{RFC3168}}, {{RFC9330}}} envision a particular
-connection consistently sending the same ECN field. It might transition that
+connection consistently sending the same ECN codepoint. It might transition that
 marking after successfully completing a handshake, recognizing the path or the
 peer do not support ECN, or transitioning to a new path. Therefore, using a
 socket option to configure a consistent marking is generally more resource-
@@ -229,10 +229,10 @@ efficient.
 
 However, some server designs receive all incoming packets on a single socket.
 As the many connections that constitute this packet stream may have different
-support for ECN, it is suitable to provide the ECN field on a per-packet basis.
+support for ECN, it is suitable to provide the ECN codepoint on a per-packet basis.
 
 Note that Apple platforms additionally provide a framework for network
-connections that allows sending the ECN field when using UDP without traditional
+connections that allows sending ECN flags when using UDP without traditional
 socket option semantics. When sending or receiving UDP datagrams, IP protocol
 metadata carries ECN information in both directions. See
 {{APPLE-NETWORK-FRAMEWORK}}.
@@ -242,22 +242,22 @@ metadata carries ECN information in both directions. See
 ### Apple, FreeBSD, and Linux
 
 For sending UDP/IPv4 packets on an IPv4 socket, Apple, FreeBSD, and Linux platforms
-allow the outgoing ECN field to be configured by using the IPPROTO_IP-level socket
+allow the outgoing ECN codepoint to be configured by using the IPPROTO_IP-level socket
 option with name IP_TOS.
 The value has the type int.
 
 For sending UDP/IPv6 packets on an IPv6 socket, Apple, FreeBSD, and Linux platforms
-allow the outgoing ECN field to be configured by using the IPPROTO_IPV6-level socket
+allow the outgoing ECN codepoint to be configured by using the IPPROTO_IPV6-level socket
 option with name IPV6_TCLASS.
 The value has the type int.
 
 For sending UDP/IPv4 packets on an IPv6 socket, Linux platforms allow the
-the outgoing ECN field to be configured by using the IPPROTO_IP-level socket
+the outgoing ECN codepoint to be configured by using the IPPROTO_IP-level socket
 option with name IP_TOS.
 
 For sending UDP/IPv4 packets on an IPv6 socket, Apple and FreeBSD platforms allow
-the outgoing ECN field to be configured by using the IPPROTO_IPV6-level socket
-option with name IPV6_TCLASS. On Apple platforms, only the ECN field is taken
+the outgoing ECN codepoint to be configured by using the IPPROTO_IPV6-level socket
+option with name IPV6_TCLASS. On Apple platforms, only the ECN codepoint is taken
 into account.
 
 In almost all cases, this setsockopt() call also sets the Differentiated Services
@@ -274,7 +274,7 @@ marking on a per-socket basis.
 
 ## On a per-packet basis
 
-Packets can be individually marked with an ECN field using the ancillary data
+Packets can be individually marked with ECN codepoints using the ancillary data
 that accompanies a sendmsg() call.
 
 ### Apple, FreeBSD, and Linux
