@@ -104,13 +104,11 @@ are likely to have different syntax and capabilities.
 
 # Conventions and Definitions
 
-{::boilerplate bcp14-tagged}
-
 This document is not a general tutorial on UDP socket programming, and assumes
 familiarity with basic socket concepts like binding, socket options, and
 common system error codes.
 
-Throughout this document, "Apple" refers to both MacOS and iOS.
+Throughout this document, "Apple" refers to both macOS and iOS.
 
 # Receiving ECN codepoints
 
@@ -131,22 +129,17 @@ metadata carries ECN information in both directions. See
 
 ### Linux, Apple, and FreeBSD
 
-To report ECN, applications set a socket option to true using a setsockopt()
+To receive ECN codepoints, applications set a socket option to true using a setsockopt()
 call.
 
-IPv6 sockets require a socket option of level IPPROTO_IPV6 and name
-IPV6_RECVTCLASS.
+On all platforms, IPv4 sockets require the IPPROTO_IP-level socket option with
+name IP_RECVTOS to be set.
 
-IPv4 sockets require a socket option of level IPPROTO_IP and name
-IP_RECVTOS.
-
-For dual-stack sockets, on Linux hosts the application sets both the
-IPV6_RECVTCLASS and IP_RECVTOS options to receive ECN codepoints on all incoming
-packets. On Apple and FreeBSD hosts, the application only sets the
-IPPROTO_IPV6-level socket option with name IPV6_RECVTCLASS to receive codepoints
-for both v4 and v6; setting an IPPROTO_IP-level socket option on an IPv6 socket
-results in an error. In particular this applies to the IPPROTO_IP-level socket
-option with the name IP_RECVTOS.
+On all platforms, IPv6 sockets require the IPPROTO_IPV6-level socket option with
+name IPV6_RECVTCLASS to be set.
+If the IPv6 socket is not IPv6 only, on Linux hosts it is required to also set
+the IPPROTO_IP-level socket option IP_RECVTOS to receive ECN codepoints for
+UDP/IPv4 packets.
 
 At the time of writing, an example implementation can be found at
 {{CHROMIUM-POSIX}}.
@@ -154,7 +147,7 @@ At the time of writing, an example implementation can be found at
 ### Windows
 
 Windows documentation recommends using the function WSASetRecvIPEcn() to
-enable ECN reporting regardless of the IP version. This function dates to
+enable ECN codepoint reporting regardless of the IP version. This function dates to
 Windows 10 Build 20348, according to {{WINDOWS-DOC}}.
 
 However, this can also be accomplished by calling setsockopt() and using
@@ -162,10 +155,10 @@ options of level IPPROTO_IP and name IP_RECVECN for IPv4, and IPPROTO_IPV6
 and IPV6_RECVECN for IPv6. These options are documented at
 {{WINDOWS-SOCKOPT}}.
 
-For dual-stack sockets, WSASetRecvIPEcn() will not enable ECN reporting for
+For IPv6 sockets which are not IPv6 only, WSASetRecvIPEcn() will not enable ECN reporting for
 IPv4. This requires a separate setsockopt() call using the IP_RECVECN option.
 
-If a socket is bound to a IPv6-mapped IPv4 address (i.e. it is of the format
+If a socket is bound to a IPv4-mapped IPv6 address (i.e. it is of the format
 ::ffff:&lt;IPv4 address&gt;), calls to WSASetRecvIpEcn() return error EINVAL.
 These sockets should instead use an explicit setsockopt() call to set
 IP_RECVECN.
@@ -176,9 +169,9 @@ At the time of writing, an example implementation can be found at
 ## Retrieving ECN codepoints on incoming packets
 
 All platforms described in this document require the use of a recvmsg() call to
-read data from the socket to retrieve ECN information, because that information
-is encoded in the control data that is returned from that function. Those
-platforms all return zero or more "cmsg" that contain requested information
+read data from the socket to retrieve the ECN codepoint, because that information
+is provided as ancillary data.
+Those platforms all return zero or more "cmsg"s that contain requested information
 about the arriving packet.
 
 Examples of the technique described below can be found at {{CHROMIUM-POSIX}}
@@ -186,41 +179,43 @@ and {{CHROMIUM-WINDOWS}}.
 
 ### Linux
 
-If the incoming packet is IPv4, Linux will include a cmsg of level IPPROTO_IP
+If a UDP/IPv4 message is received, Linux will include a cmsg of level IPPROTO_IP
 and type IP_TOS. The cmsg data contains an unsigned char.
+This applies to IPv4 sockets and IPv6 socket, which are not IPv6 only.
 
-If the incoming packet is IPv6, Linux will include a cmsg of level IPPROTO_IPV6
+If a UDP/IPv6 message is received, Linux will include a cmsg of level IPPROTO_IPV6
 and type IPV6_TCLASS. The cmsg data contains an int.
+This applies to IPv6 sockets.
 
-The resulting report contains the entire IP header byte, which includes other
-fields. The ECN codepoint constitutes the two least-significant bits of this
-byte.
+The cmsg data contains the entire IP header byte, which includes the DSCP
+and the ECN codepoint.
+The ECN codepoint constitutes the two least-significant bits of this byte.
 
 The same applies to the Linux-specific recvmmsg() call.
 
 ### Apple and FreeBSD
 
-If a UDP message (UDP/IPv4) is received on an IPv4 socket, the ancillary data
+If a UDP/IPv4 message is received on an IPv4 socket, the ancillary data
 will contain a cmsg of level IPPROTO_IP and type IP_RECVTOS. The cmsg data
 contains an unsigned char.
 
-If a UDP message (UDP/IPv6 or UDP/IPv4) is received on an IPv6 socket, the
+If a UDP/IPv6 or UDP/IPv4 message is received on an IPv6 socket, the
 ancillary data will contain a cmsg of level IPPROTO_IPV6 and type IPV6_TCLASS.
 The cmsg data contains an int.
 
-The provided data is the entire byte from the IP header, which includes other
-fields. The ECN codepoint constitutes the two least-significant bits of this
-byte.
+The cmsg data contains the entire IP header byte, which includes the DSCP
+and the ECN codepoint.
+The ECN codepoint constitutes the two least-significant bits of this byte.
 
 ### Windows
 
-If the incoming packet is IPv4, the socket will include a cmsg of level
+If the incoming packet is UDP/IPv4, the socket will include a cmsg of level
 IPPROTO_IP and type IP_ECN. The cmsg data contains an int.
 
-If the incoming packet is IPv6, the socket will include a cmsg of level
+If the incoming packet is UDP/IPv6, the socket will include a cmsg of level
 IPPROTO_IPV6 and type IPV6_ECN. The cmsg data contains an int.
 
-The resulting integer solely consists of the ECN codepoint, and requires no
+The cmsg data solely consists of the ECN codepoint, and requires no
 further bitwise operations.
 
 # Sending ECN codepoints
@@ -234,7 +229,7 @@ efficient.
 
 However, some server designs receive all incoming packets on a single socket.
 As the many connections that constitute this packet stream may have different
-support for ECN, it is suitable to configure outgoing ECN on a per-packet basis.
+support for ECN, it is suitable to provide the ECN codepoint on a per-packet basis.
 
 Note that Apple platforms additionally provide a framework for network
 connections that allows sending ECN flags when using UDP without traditional
@@ -244,20 +239,31 @@ metadata carries ECN information in both directions. See
 
 ## On a per-socket basis
 
-### Linux and Apple
+### Apple, FreeBSD, and Linux
 
-Both Linux and Apple platforms set the outgoing ECN for IPv4 packets with a
-socket option of level IPPROTO_IP and name IP_TOS.
+For sending UDP/IPv4 packets on an IPv4 socket, Apple, FreeBSD, and Linux platforms
+allow the outgoing ECN codepoint to be configured by using the IPPROTO_IP-level socket
+option with name IP_TOS.
+The value has the type int.
 
-For IPv6 packets, they use level IPPROTO_IPV6 and name IPV6_TCLASS.
+For sending UDP/IPv6 packets on an IPv6 socket, Apple, FreeBSD, and Linux platforms
+allow the outgoing ECN codepoint to be configured by using the IPPROTO_IPV6-level socket
+option with name IPV6_TCLASS.
+The value has the type int.
 
-This setsockopt() call also sets the Differentiated Services Code Point (DSCP)
-bits that make up the rest of the header byte. Applications making this call will
-generally want to preserve any existing DSCP setting, which might require a
-getsockopt() call.
+For sending UDP/IPv4 packets on an IPv6 socket, Linux platforms allow the
+the outgoing ECN codepoint to be configured by using the IPPROTO_IP-level socket
+option with name IP_TOS.
 
-For dual-stack sockets, Linux requires an additional setsockopt() call with
-IP_TOS. Apple sockets do not and will return an error if this call is made.
+For sending UDP/IPv4 packets on an IPv6 socket, Apple and FreeBSD platforms allow
+the outgoing ECN codepoint to be configured by using the IPPROTO_IPV6-level socket
+option with name IPV6_TCLASS. On Apple platforms, only the ECN codepoint is taken
+into account.
+
+In almost all cases, this setsockopt() call also sets the Differentiated Services
+Code Point (DSCP) that make up the rest of the header byte.
+Applications making this call will generally want to preserve any existing DSCP
+setting, which might require an additional getsockopt() call.
 
 An example of the technique described above can be found at {{CHROMIUM-POSIX}}.
 
@@ -268,15 +274,22 @@ marking on a per-socket basis.
 
 ## On a per-packet basis
 
-Packets can be individually marked with ECN codepoints using the control
-information that accompanies a sendmsg() call.
+Packets can be individually marked with ECN codepoints using the ancillary data
+that accompanies a sendmsg() call.
 
-### Linux and Apple
+### Apple, FreeBSD, and Linux
 
-These platforms expect a cmsg with level IPPROTO_IP and type IP_TOS if the
-destination is an IPv4 address, or a IPv4-mapped IPv6 address.
+For sending UDP/IPv4 packets on an IPv4 socket, Apple, FreeBSD, and Linux use
+a cmsg with level IPPROTO_IP and type IP_TOS. On Apple and Linux the type of
+data is int and for FreeBSD it is unsigned char.
 
-Otherwise, they expect a cmsg with level IPPROTO_IPV6 and type IPV6_TCLASS.
+For sending UDP/IPv6 packets on an IPv6 socket, Apple, FreeBSD, and Linux use
+a cmsg with level IPPROTO_IPV6 and type IPV6_TCLASS. The type of the data
+is int.
+
+For sending UDP/IPv4 packets on an IPv6 socket, Linux requires a cmsg with
+level IPPROTO_IP and type IP_TOS.
+Apple and FreeBSD accept a cmsg with level IPPROTO_IPV6 and type IPV6_TCLASS.
 
 The same applies to the Linux-specific sendmmsg() call.
 
