@@ -257,11 +257,10 @@ option with name IP_TOS.
 
 For sending UDP/IPv4 packets on an IPv6 socket, Apple and FreeBSD platforms allow
 the outgoing ECN codepoint to be configured by using the IPPROTO_IPV6-level socket
-option with name IPV6_TCLASS. On Apple platforms, only the ECN codepoint is taken
-into account.
+option with name IPV6_TCLASS.
 
-In almost all cases, this setsockopt() call also sets the Differentiated Services
-Code Point (DSCP) that make up the rest of the header byte.
+Except for Apple platforms, this setsockopt() call also sets the Differentiated
+Services Code Point (DSCP) that make up the rest of the header byte.
 Applications making this call will generally want to preserve any existing DSCP
 setting, which might require an additional getsockopt() call.
 
