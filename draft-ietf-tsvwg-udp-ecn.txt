@@ -4,8 +4,8 @@
 
 Transport and Services Working Group                             M. Duke
 Internet-Draft                                                    Google
-Intended status: Informational                          23 December 2025
-Expires: 26 June 2026
+Intended status: Informational                          20 February 2026
+Expires: 24 August 2026
 
 
           Configuring UDP Sockets for ECN for Common Platforms
@@ -53,11 +53,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 26 June 2026.
+   This Internet-Draft will expire on 24 August 2026.
 
 Copyright Notice
 
-   Copyright (c) 2025 IETF Trust and the persons identified as the
+   Copyright (c) 2026 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -137,6 +137,9 @@ Table of Contents
 
    This document focuses on the APIs for the C and C++ languages.  Other
    languages are likely to have different syntax and capabilities.
+
+   The "ecn-examples" code repository ([EXAMPLES]) is extremely compact
+   code that can verify the information in this document.
 
 2.  Conventions and Definitions
 
@@ -382,6 +385,9 @@ Table of Contents
               <https://source.chromium.org/chromium/chromium/
               src/+/main:net/socket/udp_socket_win.cc>.
 
+   [EXAMPLES] "ecn-examples", n.d.,
+              <https://github.com/nplab/ecn-examples>.
+
    [WINDOWS-DOC]
               "WSASetRecvIPEcn function (ws2tcpip.h)", n.d.,
               <https://learn.microsoft.com/en-
@@ -441,10 +447,13 @@ Acknowledgments
    respective operating systems.  However, the author takes full
    responsibility for any errors above.
 
+   Michael Tuexen wrote the "ecn-examples" code that was very helpful in
+   verifying the conclusions in this document.  He also made multiple
+   editorial contributions.
+
    Neal Cardwell, Gorry Fairhurst, Max Franke, Rodney Grimes, Will
    Hawkins, Guillaume Hétier, Max Inden, Jonathan Lennox, Colin Perkins,
-   Marten Seemann, Michael Tuexen, and Greg White made improvements to
-   this draft.
+   Marten Seemann, and Greg White made improvements to this draft.
 
 Author's Address
 
