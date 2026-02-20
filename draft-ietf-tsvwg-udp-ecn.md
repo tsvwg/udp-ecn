@@ -43,6 +43,10 @@ informative:
    title: "udp_socket_win.cc"
    target: "https://source.chromium.org/chromium/chromium/src/+/main:net/socket/udp_socket_win.cc"
 
+ EXAMPLES:
+   title: "ecn-examples"
+   target: "https://github.com/nplab/ecn-examples"
+
  WINDOWS-DOC:
    title: "WSASetRecvIPEcn function (ws2tcpip.h)"
    target: "https://learn.microsoft.com/en-us/windows/win32/api/ws2tcpip/nf-ws2tcpip-wsasetrecvipecn"
@@ -101,6 +105,9 @@ and the 2-bit ECN field.
 
 This document focuses on the APIs for the C and C++ languages. Other languages
 are likely to have different syntax and capabilities.
+
+The "ecn-examples" code repository ({{EXAMPLES}}) is extremely compact code that
+can verify the information in this document.
 
 # Conventions and Definitions
 
@@ -327,6 +334,9 @@ through this effort. Randall Meyer from Apple and Nick Grifka from Microsoft
 provided useful hints about the behavior of their respective operating systems.
 However, the author takes full responsibility for any errors above.
 
+Michael Tuexen wrote the "ecn-examples" code that was very helpful in verifying
+the conclusions in this document. He also made multiple editorial contributions.
+
 Neal Cardwell, Gorry Fairhurst, Max Franke, Rodney Grimes, Will Hawkins,
 Guillaume H&eacute;tier, Max Inden, Jonathan Lennox, Colin Perkins, Marten
-Seemann, Michael Tuexen, and Greg White made improvements to this draft.
+Seemann, and Greg White made improvements to this draft.
