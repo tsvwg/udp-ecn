@@ -109,6 +109,10 @@ are likely to have different syntax and capabilities.
 The "ecn-examples" code repository ({{EXAMPLES}}) is extremely compact code that
 can verify the information in this document.
 
+This document addresses access to the ECN field in the IP header via socket
+APIs. It does not address UDP transport-layer options {{?RFC9868}}, which are a
+separate extension mechanism operating at a different layer.
+
 # Conventions and Definitions
 
 This document is not a general tutorial on UDP socket programming, and assumes
@@ -268,8 +272,10 @@ option with name IPV6_TCLASS.
 
 Except for Apple platforms, this setsockopt() call also sets the Differentiated
 Services Code Point (DSCP) that make up the rest of the header byte.
-Applications making this call will generally want to preserve any existing DSCP
-setting, which might require an additional getsockopt() call.
+Applications making this call ought to preserve any existing DSCP setting, which
+might require an additional getsockopt() call, to avoid overriding commands set
+by other code in the stack. If there are multiple threads making changes to this
+byte, further safeguards will be necessary.
 
 An example of the technique described above can be found at {{CHROMIUM-POSIX}}.
 
