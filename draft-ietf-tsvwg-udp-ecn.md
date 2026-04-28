@@ -267,7 +267,7 @@ allow the outgoing ECN codepoint to be configured by using the IPPROTO_IPV6-leve
 option with name IPV6_TCLASS.
 The value has the type int.
 
-For sending UDP/IPv4 packets on an IPv6 socket, Linux platforms allow 
+For sending UDP/IPv4 packets on an IPv6 socket, Linux platforms allow
 the outgoing ECN codepoint to be configured by using the IPPROTO_IP-level socket
 option with name IP_TOS.
 
