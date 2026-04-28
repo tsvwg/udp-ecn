@@ -119,7 +119,8 @@ This document is not a general tutorial on UDP socket programming, and assumes
 familiarity with basic socket concepts like binding, socket options, and
 common system error codes.
 
-Throughout this document, "Apple" refers to both macOS and iOS.
+Throughout this document, "Apple" refers to both macOS and iOS. "Linux" guidance
+also applies to Android.
 
 # Receiving ECN codepoints
 
@@ -166,8 +167,9 @@ options of level IPPROTO_IP and name IP_RECVECN for IPv4, and IPPROTO_IPV6
 and IPV6_RECVECN for IPv6. These options are documented at
 {{WINDOWS-SOCKOPT}}.
 
-For IPv6 sockets which are not IPv6 only, WSASetRecvIPEcn() will not enable ECN reporting for
-IPv4. This requires a separate setsockopt() call using the IP_RECVECN option.
+For IPv6 sockets that are not IPv6 only, WSASetRecvIPEcn() will not enable ECN
+reporting for IPv4. This requires a separate setsockopt() call using the
+IP_RECVECN option.
 
 If a socket is bound to a IPv4-mapped IPv6 address (i.e. it is of the format
 ::ffff:&lt;IPv4 address&gt;), calls to WSASetRecvIpEcn() return error EINVAL.
@@ -231,7 +233,7 @@ further bitwise operations.
 
 # Sending ECN codepoints
 
-Existing ECN specifications ({{RFC3168}}, {{RFC9330}}} envision a particular
+Existing ECN specifications ({{RFC3168}}, {{RFC9330}}) envision a particular
 connection consistently sending the same ECN codepoint. It might transition that
 marking after successfully completing a handshake, recognizing the path or the
 peer do not support ECN, or transitioning to a new path. Therefore, using a
