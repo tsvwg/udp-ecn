@@ -68,7 +68,7 @@ Windows platforms.
 
 # Introduction
 
-{{?RFC3168}} defines a two-bit field in the IP header for Explicit Congestion
+{{!RFC3168}} defines a two-bit field in the IP header for Explicit Congestion
 Notification (ECN), which provides network feedback to endpoint congestion
 controllers. This has historically mostly been relevant to TCP ({{?RFC9293}}),
 where any incoming ECN codepoints are internally consumed by the kernel, and
@@ -86,7 +86,7 @@ research implementation, but cannot confirm any commercial deployments.
 
 However, QUIC {{?RFC9000}} runs over UDP and has seen wider deployment than
 SCTP. The Low Latency, Low Loss, Scalable Throughput (L4S) experiment
-({{?RFC9330}}) and QUIC have combined to increase interest in ECN over UDP.
+({{!RFC9330}}) and QUIC have combined to increase interest in ECN over UDP.
 
 The Chromium Projects ({{CHROMIUM}}) provide a widely-deployed protocol library
 that includes QUIC. An effort to provide ECN support for QUIC on the many
