@@ -114,8 +114,8 @@ Table of Contents
    supported ECN in its design.  SCTP is sometimes carried over DTLS and
    UDP ([RFC8261]).  In principle, user-space implementers might have
    leveraged UDP ECN APIs to deliver ECN codepoints between SCTP and the
-   UDP socket.  At the time of publication, the TSV Working Group is not
-   aware of any such efforts.
+   UDP socket.  At the time of publication, the IETF is not aware of any
+   such efforts.
 
    [RFC6679] defines ECN over RTP over UDP.  The IETF is aware of a
    research implementation, but cannot confirm any commercial
