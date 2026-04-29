@@ -4,8 +4,8 @@
 
 Transport and Services Working Group                             M. Duke
 Internet-Draft                                                    Google
-Intended status: Informational                             20 April 2026
-Expires: 22 October 2026
+Intended status: Informational                             29 April 2026
+Expires: 31 October 2026
 
 
           Configuring UDP Sockets for ECN for Common Platforms
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 October 2026.
+   This Internet-Draft will expire on 31 October 2026.
 
 Copyright Notice
 
@@ -90,7 +90,9 @@ Table of Contents
        4.2.2.  Windows
    5.  Security Considerations
    6.  IANA Considerations
-   7.  Informative References
+   7.  References
+     7.1.  Normative References
+     7.2.  Informative References
    Acknowledgments
    Author's Address
 
@@ -371,7 +373,22 @@ Table of Contents
 
    This document has no IANA actions.
 
-7.  Informative References
+7.  References
+
+7.1.  Normative References
+
+   [RFC3168]  Ramakrishnan, K., Floyd, S., and D. Black, "The Addition
+              of Explicit Congestion Notification (ECN) to IP",
+              RFC 3168, DOI 10.17487/RFC3168, September 2001,
+              <https://www.rfc-editor.org/info/rfc3168>.
+
+   [RFC9330]  Briscoe, B., Ed., De Schepper, K., Bagnulo, M., and G.
+              White, "Low Latency, Low Loss, and Scalable Throughput
+              (L4S) Internet Service: Architecture", RFC 9330,
+              DOI 10.17487/RFC9330, January 2023,
+              <https://www.rfc-editor.org/info/rfc9330>.
+
+7.2.  Informative References
 
    [APPLE-NETWORK-FRAMEWORK]
               "NWProtocolIP.Metadata", n.d.,
@@ -405,11 +422,6 @@ Table of Contents
               <https://learn.microsoft.com/en-us/windows/win32/winsock/
               ipproto-ip-socket-options>.
 
-   [RFC3168]  Ramakrishnan, K., Floyd, S., and D. Black, "The Addition
-              of Explicit Congestion Notification (ECN) to IP",
-              RFC 3168, DOI 10.17487/RFC3168, September 2001,
-              <https://www.rfc-editor.org/info/rfc3168>.
-
    [RFC9293]  Eddy, W., Ed., "Transmission Control Protocol (TCP)",
               STD 7, RFC 9293, DOI 10.17487/RFC9293, August 2022,
               <https://www.rfc-editor.org/info/rfc9293>.
@@ -432,12 +444,6 @@ Table of Contents
               Multiplexed and Secure Transport", RFC 9000,
               DOI 10.17487/RFC9000, May 2021,
               <https://www.rfc-editor.org/info/rfc9000>.
-
-   [RFC9330]  Briscoe, B., Ed., De Schepper, K., Bagnulo, M., and G.
-              White, "Low Latency, Low Loss, and Scalable Throughput
-              (L4S) Internet Service: Architecture", RFC 9330,
-              DOI 10.17487/RFC9330, January 2023,
-              <https://www.rfc-editor.org/info/rfc9330>.
 
    [RFC2474]  Nichols, K., Blake, S., Baker, F., and D. Black,
               "Definition of the Differentiated Services Field (DS
