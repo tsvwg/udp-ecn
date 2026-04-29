@@ -152,9 +152,10 @@ name IP_RECVTOS to be set.
 
 On all platforms, IPv6 sockets require the IPPROTO_IPV6-level socket option with
 name IPV6_RECVTCLASS to be set.
+
 If the IPv6 socket is not IPv6 only, on Linux hosts it is required to also set
 the IPPROTO_IP-level socket option IP_RECVTOS to receive ECN codepoints for
-UDP/IPv4 packets.
+UDP/IPv4 packets. This step is not necessary for Apple and FreeBSD.
 
 At the time of writing, an example implementation can be found at
 {{CHROMIUM-POSIX}}.
@@ -240,8 +241,8 @@ Existing ECN specifications ({{RFC3168}}, {{RFC9330}}} envision a particular
 connection consistently sending the same ECN codepoint. It might transition that
 marking after successfully completing a handshake, recognizing the path or the
 peer do not support ECN, or transitioning to a new path. Therefore, using a
-socket option to configure a consistent marking is generally more resource-
-efficient.
+socket option to configure a consistent marking is generally more
+resource-efficient.
 
 However, some server designs receive all incoming packets on a single socket.
 As the many connections that constitute this packet stream may have different
