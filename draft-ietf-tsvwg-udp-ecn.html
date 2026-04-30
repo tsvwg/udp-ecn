@@ -1058,7 +1058,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Duke</td>
-<td class="center">Expires 31 October 2026</td>
+<td class="center">Expires 1 November 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1071,12 +1071,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-tsvwg-udp-ecn-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-04-29" class="published">29 April 2026</time>
+<time datetime="2026-04-30" class="published">30 April 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-10-31">31 October 2026</time></dd>
+<dd class="expires"><time datetime="2026-11-01">1 November 2026</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1134,7 +1134,7 @@ the various platforms for an up-to-date information on the matter.<a href="#sect
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 31 October 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 1 November 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1336,12 +1336,12 @@ call.<a href="#section-3.1.1-1" class="pilcrow">¶</a></p>
 <p id="section-3.1.1-2">On all platforms, IPv4 sockets require the IPPROTO_IP-level socket option with
 name IP_RECVTOS to be set.<a href="#section-3.1.1-2" class="pilcrow">¶</a></p>
 <p id="section-3.1.1-3">On all platforms, IPv6 sockets require the IPPROTO_IPV6-level socket option with
-name IPV6_RECVTCLASS to be set.
-If the IPv6 socket is not IPv6 only, on Linux hosts it is required to also set
+name IPV6_RECVTCLASS to be set.<a href="#section-3.1.1-3" class="pilcrow">¶</a></p>
+<p id="section-3.1.1-4">If the IPv6 socket is not IPv6 only, on Linux hosts it is required to also set
 the IPPROTO_IP-level socket option IP_RECVTOS to receive ECN codepoints for
-UDP/IPv4 packets.<a href="#section-3.1.1-3" class="pilcrow">¶</a></p>
-<p id="section-3.1.1-4">At the time of writing, an example implementation can be found at
-<span>[<a href="#CHROMIUM-POSIX" class="cite xref">CHROMIUM-POSIX</a>]</span>.<a href="#section-3.1.1-4" class="pilcrow">¶</a></p>
+UDP/IPv4 packets. This step is not necessary for Apple and FreeBSD.<a href="#section-3.1.1-4" class="pilcrow">¶</a></p>
+<p id="section-3.1.1-5">At the time of writing, an example implementation can be found at
+<span>[<a href="#CHROMIUM-POSIX" class="cite xref">CHROMIUM-POSIX</a>]</span>.<a href="#section-3.1.1-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="windows">
@@ -1440,8 +1440,8 @@ further bitwise operations.<a href="#section-3.2.3-3" class="pilcrow">¶</a></p>
 connection consistently sending the same ECN codepoint. It might transition that
 marking after successfully completing a handshake, recognizing the path or the
 peer do not support ECN, or transitioning to a new path. Therefore, using a
-socket option to configure a consistent marking is generally more resource-
-efficient.<a href="#section-4-1" class="pilcrow">¶</a></p>
+socket option to configure a consistent marking is generally more
+resource-efficient.<a href="#section-4-1" class="pilcrow">¶</a></p>
 <p id="section-4-2">However, some server designs receive all incoming packets on a single socket.
 As the many connections that constitute this packet stream may have different
 support for ECN, it is suitable to provide the ECN codepoint on a per-packet basis.<a href="#section-4-2" class="pilcrow">¶</a></p>
