@@ -64,11 +64,15 @@ platforms is sparse. This document records the results of experimenting with
 these APIs in order to get ECN working on UDP for Chromium on Apple, Linux, and
 Windows platforms.
 
+This document provides a snapshot of ECN state of affairs as supported by these
+platforms at the time of writing. Readers should refer to the documentations of
+the various platforms for an up-to-date information on the matter.
+
 --- middle
 
 # Introduction
 
-{{?RFC3168}} defines a two-bit field in the IP header for Explicit Congestion
+{{!RFC3168}} defines a two-bit field in the IP header for Explicit Congestion
 Notification (ECN), which provides network feedback to endpoint congestion
 controllers. This has historically mostly been relevant to TCP ({{?RFC9293}}),
 where any incoming ECN codepoints are internally consumed by the kernel, and
@@ -79,14 +83,14 @@ The Stream Control Transport Protocol (SCTP) ({{?RFC9260}}) has long supported
 ECN in its design. SCTP is sometimes carried over DTLS and UDP ({{?RFC8261}}).
 In principle, user-space implementers might have leveraged UDP ECN APIs to
 deliver ECN codepoints between SCTP and the UDP socket. At the time of
-publication, the TSV Working Group is not aware of any such efforts.
+publication, the IETF is not aware of any such efforts.
 
-{{?RFC6679}} defines ECN over RTP over UDP. The Working Group is aware of a
-research implementation, but cannot confirm any commercial deployments.
+{{?RFC6679}} defines ECN over RTP over UDP. The IETF is aware of a research
+implementation, but cannot confirm any commercial deployments.
 
-However, QUIC {{?RFC9000}} runs over UDP and has seen wider deployment than
-SCTP. The Low Latency, Low Loss, Scalable Throughput (L4S) experiment
-({{?RFC9330}}) and QUIC have combined to increase interest in ECN over UDP.
+QUIC {{?RFC9000}} runs over UDP and has seen wider deployment than SCTP. The Low
+Latency, Low Loss, Scalable Throughput (L4S) architecture ({{?RFC9330}}) and
+QUIC have combined to increase interest in ECN over UDP.
 
 The Chromium Projects ({{CHROMIUM}}) provide a widely-deployed protocol library
 that includes QUIC. An effort to provide ECN support for QUIC on the many
@@ -149,9 +153,10 @@ name IP_RECVTOS to be set.
 
 On all platforms, IPv6 sockets require the IPPROTO_IPV6-level socket option with
 name IPV6_RECVTCLASS to be set.
+
 If the IPv6 socket is not IPv6 only, on Linux hosts it is required to also set
 the IPPROTO_IP-level socket option IP_RECVTOS to receive ECN codepoints for
-UDP/IPv4 packets.
+UDP/IPv4 packets. This step is not necessary for Apple and FreeBSD.
 
 At the time of writing, an example implementation can be found at
 {{CHROMIUM-POSIX}}.
@@ -159,8 +164,8 @@ At the time of writing, an example implementation can be found at
 ### Windows
 
 Windows documentation recommends using the function WSASetRecvIPEcn() to
-enable ECN codepoint reporting regardless of the IP version. This function dates to
-Windows 10 Build 20348, according to {{WINDOWS-DOC}}.
+enable ECN codepoint reporting regardless of the IP version. This function dates
+to Windows 10 Build 20348, according to {{WINDOWS-DOC}}.
 
 However, this can also be accomplished by calling setsockopt() and using
 options of level IPPROTO_IP and name IP_RECVECN for IPv4, and IPPROTO_IPV6
@@ -172,9 +177,9 @@ reporting for IPv4. This requires a separate setsockopt() call using the
 IP_RECVECN option.
 
 If a socket is bound to a IPv4-mapped IPv6 address (i.e. it is of the format
-::ffff:&lt;IPv4 address&gt;), calls to WSASetRecvIpEcn() return error EINVAL.
-These sockets should instead use an explicit setsockopt() call to set
-IP_RECVECN.
+::ffff:&lt;IPv4 address&gt;, see {{?RFC4291, Section 2.5.5.2}}) calls to
+WSASetRecvIpEcn() return error EINVAL. These sockets should instead use an
+explicit setsockopt() call to set IP_RECVECN.
 
 At the time of writing, an example implementation can be found at
 {{CHROMIUM-WINDOWS}}.
@@ -237,8 +242,8 @@ Existing ECN specifications ({{RFC3168}}, {{RFC9330}}) envision a particular
 connection consistently sending the same ECN codepoint. It might transition that
 marking after successfully completing a handshake, recognizing the path or the
 peer do not support ECN, or transitioning to a new path. Therefore, using a
-socket option to configure a consistent marking is generally more resource-
-efficient.
+socket option to configure a consistent marking is generally more
+resource-efficient.
 
 However, some server designs receive all incoming packets on a single socket.
 As the many connections that constitute this packet stream may have different
@@ -264,7 +269,7 @@ allow the outgoing ECN codepoint to be configured by using the IPPROTO_IPV6-leve
 option with name IPV6_TCLASS.
 The value has the type int.
 
-For sending UDP/IPv4 packets on an IPv6 socket, Linux platforms allow the
+For sending UDP/IPv4 packets on an IPv6 socket, Linux platforms allow
 the outgoing ECN codepoint to be configured by using the IPPROTO_IP-level socket
 option with name IP_TOS.
 
