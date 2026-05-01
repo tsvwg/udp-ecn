@@ -4,8 +4,8 @@
 
 Transport and Services Working Group                             M. Duke
 Internet-Draft                                                    Google
-Intended status: Informational                             30 April 2026
-Expires: 1 November 2026
+Intended status: Informational                                1 May 2026
+Expires: 2 November 2026
 
 
           Configuring UDP Sockets for ECN for Common Platforms
@@ -58,7 +58,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 November 2026.
+   This Internet-Draft will expire on 2 November 2026.
 
 Copyright Notice
 
@@ -160,6 +160,7 @@ Table of Contents
    socket options, and common system error codes.
 
    Throughout this document, "Apple" refers to both macOS and iOS.
+   "Linux" guidance also applies to Android.
 
 3.  Receiving ECN codepoints
 
@@ -210,7 +211,7 @@ Table of Contents
    IPPROTO_IPV6 and IPV6_RECVECN for IPv6.  These options are documented
    at [WINDOWS-SOCKOPT].
 
-   For IPv6 sockets which are not IPv6 only, WSASetRecvIPEcn() will not
+   For IPv6 sockets that are not IPv6 only, WSASetRecvIPEcn() will not
    enable ECN reporting for IPv4.  This requires a separate setsockopt()
    call using the IP_RECVECN option.
 
@@ -277,7 +278,7 @@ Table of Contents
 
 4.  Sending ECN codepoints
 
-   Existing ECN specifications ([RFC3168], [RFC9330]} envision a
+   Existing ECN specifications ([RFC3168], [RFC9330]) envision a
    particular connection consistently sending the same ECN codepoint.
    It might transition that marking after successfully completing a
    handshake, recognizing the path or the peer do not support ECN, or
