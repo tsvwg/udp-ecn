@@ -89,7 +89,7 @@ publication, the IETF is not aware of any such efforts.
 implementation, but cannot confirm any commercial deployments.
 
 QUIC {{?RFC9000}} runs over UDP and has seen wider deployment than SCTP. The Low
-Latency, Low Loss, Scalable Throughput (L4S) architecture ({{?RFC9330}}) and
+Latency, Low Loss, Scalable Throughput (L4S) architecture ({{!RFC9330}}) and
 QUIC have combined to increase interest in ECN over UDP.
 
 The Chromium Projects ({{CHROMIUM}}) provide a widely-deployed protocol library
