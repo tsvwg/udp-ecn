@@ -396,6 +396,12 @@ Table of Contents
               DOI 10.17487/RFC9330, January 2023,
               <https://www.rfc-editor.org/info/rfc9330>.
 
+   [RFC2474]  Nichols, K., Blake, S., Baker, F., and D. Black,
+              "Definition of the Differentiated Services Field (DS
+              Field) in the IPv4 and IPv6 Headers", RFC 2474,
+              DOI 10.17487/RFC2474, December 1998,
+              <https://www.rfc-editor.org/info/rfc2474>.
+
 7.2.  Informative References
 
    [APPLE-NETWORK-FRAMEWORK]
@@ -452,12 +458,6 @@ Table of Contents
               Multiplexed and Secure Transport", RFC 9000,
               DOI 10.17487/RFC9000, May 2021,
               <https://www.rfc-editor.org/info/rfc9000>.
-
-   [RFC2474]  Nichols, K., Blake, S., Baker, F., and D. Black,
-              "Definition of the Differentiated Services Field (DS
-              Field) in the IPv4 and IPv6 Headers", RFC 2474,
-              DOI 10.17487/RFC2474, December 1998,
-              <https://www.rfc-editor.org/info/rfc2474>.
 
    [RFC9868]  Touch, J. and C. Heard, Ed., "Transport Options for UDP",
               RFC 9868, DOI 10.17487/RFC9868, October 2025,
