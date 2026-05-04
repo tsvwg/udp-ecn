@@ -103,7 +103,7 @@ of ECN codepoints that operates over UDP. It is not a standards-track document
 and does not bind platforms to any API, or suggest any such API.
 
 Many socket APIs continue to reference the "ToS (Type of Service) byte",
-including the IP_TOS label, even though {{?RFC2474}} obsoleted that in 1998.
+including the IP_TOS label, even though {{!RFC2474}} obsoleted that in 1998.
 That 8-bit field now contains a 6-bit Differentiated Services Code Point (DSCP)
 and the 2-bit ECN field.
 
